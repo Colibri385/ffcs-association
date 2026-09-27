@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth, ROLES } from '../context/AuthContext';
-import { LogIn, AlertCircle, Sparkles, Check, Shield } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import { LogIn, AlertCircle } from 'lucide-react';
 
 export const LoginPage = () => {
-  const { login, quickDemoLogin } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -22,19 +22,6 @@ export const LoginPage = () => {
       navigate('/dashboard');
     } catch (err) {
       setError(err.message || 'Erreur lors de la connexion');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleQuickLogin = async (role) => {
-    setError(null);
-    setLoading(true);
-    try {
-      await quickDemoLogin(role);
-      navigate('/dashboard');
-    } catch (err) {
-      setError(err.message);
     } finally {
       setLoading(false);
     }
@@ -102,54 +89,6 @@ export const LoginPage = () => {
             {loading ? 'Connexion en cours...' : 'Se connecter'}
           </button>
         </form>
-
-        {/* 1-Click Fast Login Test Accounts */}
-        <div className="mt-8 pt-6 border-t border-slate-800 space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1">
-              <Sparkles size={13} className="text-amber-400" />
-              Connexion Rapide (Comptes Démo)
-            </span>
-          </div>
-
-          <div className="grid grid-cols-2 gap-2">
-            <button
-              type="button"
-              onClick={() => handleQuickLogin(ROLES.PRESIDENT)}
-              className="p-2 text-left bg-slate-800/80 hover:bg-slate-800 border border-amber-500/30 rounded-lg text-xs transition-colors"
-            >
-              <div className="font-bold text-amber-300">Président</div>
-              <div className="text-[10px] text-slate-400">P. de Courcelles</div>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => handleQuickLogin(ROLES.TREASURER)}
-              className="p-2 text-left bg-slate-800/80 hover:bg-slate-800 border border-emerald-500/30 rounded-lg text-xs transition-colors"
-            >
-              <div className="font-bold text-emerald-300">Trésorière</div>
-              <div className="text-[10px] text-slate-400">S. Laurent</div>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => handleQuickLogin(ROLES.SECRETARY)}
-              className="p-2 text-left bg-slate-800/80 hover:bg-slate-800 border border-blue-500/30 rounded-lg text-xs transition-colors"
-            >
-              <div className="font-bold text-blue-300">Secrétaire</div>
-              <div className="text-[10px] text-slate-400">M. Fontaine</div>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => handleQuickLogin(ROLES.REGULAR_MEMBER)}
-              className="p-2 text-left bg-slate-800/80 hover:bg-slate-800 border border-slate-600 rounded-lg text-xs transition-colors"
-            >
-              <div className="font-bold text-slate-300">Membre Régulier</div>
-              <div className="text-[10px] text-slate-400">L. Moreau</div>
-            </button>
-          </div>
-        </div>
 
         <div className="mt-6 text-center text-xs text-slate-400">
           Pas encore membre de la fédération ?{' '}

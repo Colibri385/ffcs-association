@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import RoleBadge from './RoleBadge';
-import DemoSwitcher from './DemoSwitcher';
 import {
   Calendar,
   Users,
@@ -127,9 +126,6 @@ export const Navbar = () => {
 
           {/* Right Action Buttons & User Menu */}
           <div className="hidden md:flex items-center gap-3">
-            {/* 1-Click Role Switcher */}
-            <DemoSwitcher />
-
             {isLoggedIn ? (
               <div className="flex items-center gap-2 pl-2 border-l border-slate-800">
                 <Link
@@ -176,7 +172,6 @@ export const Navbar = () => {
 
           {/* Mobile menu trigger */}
           <div className="flex md:hidden items-center gap-2">
-            <DemoSwitcher />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 focus:outline-none"
