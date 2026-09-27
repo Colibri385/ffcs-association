@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-100 antialiased overflow-x-hidden;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, .font-racing {
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 0.03em;
+  }
+}
+
+/* Motorsport custom styles */
+.tricolore-bar {
+  background: linear-gradient(90deg, #1d4ed8 0%, #1d4ed8 33.3%, #ffffff 33.3%, #ffffff 66.6%, #dc2626 66.6%, #dc2626 100%);
+}
+
+.tricolore-glow {
+  box-shadow: 0 0 25px -5px rgba(29, 78, 216, 0.4), 0 0 25px -5px rgba(220, 38, 38, 0.4);
+}
+
+.racing-card {
+  @apply bg-slate-900/80 border border-slate-800 rounded-xl backdrop-blur-md transition-all duration-300;
+}
+
+.racing-card:hover {
+  @apply border-slate-700 bg-slate-900/95 shadow-xl shadow-blue-950/30;
+}
+
+.carbon-pattern {
+  background-color: #0f172a;
+  background-image: radial-gradient(#1e293b 0.75px, transparent 0.75px), radial-gradient(#1e293b 0.75px, #0f172a 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
