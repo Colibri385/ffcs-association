@@ -22,7 +22,8 @@ const CATEGORIES = [
   'ESCRIME',
   'RUGBY',
   'GOLF',
-  'TENNIS DE TABLE'
+  'TENNIS DE TABLE',
+  'PATINAGE',
 ];
 
 export const EventModal = ({ isOpen, onClose, onSave, eventToEdit = null }) => {
