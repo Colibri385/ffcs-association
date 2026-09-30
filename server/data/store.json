@@ -150,7 +150,7 @@
       "trackLength": "Circuit homologué FFCS",
       "description": "Parking Tabarly 1 : Gestion du stationnement ",
       "totalSpots": 25,
-      "requirements": "Casque homologué, permis de conduire et licence FFCS.",
+      "requirements": "Permis de conduire B et licence FFCS.",
       "imageUrl": "/Arena.png",
       "createdBy": "usr_1789914868881_g6gdb",
       "createdAt": "2026-09-23T08:05:57.460Z",
@@ -274,7 +274,7 @@
       "secondary": "#FFFFFF",
       "accent": "#DC2626"
     },
-    "address": "Circuit de Nevers Magny-Cours, Technopole Motorsport, 58470 Magny-Cours, France",
+    "address": "Les Sable d'Olonne",
     "email": "jean-claude.benoit1@orange.fr",
     "phone": "+33 1 42 68 55 00"
   }
