@@ -21,7 +21,10 @@ const CATEGORIES = [
   'Tennis',
   'Escrime',
   'Basket',
-  'Football'
+  'Football',
+  'Tennis de table',
+  'Patinage',
+  'Volley'
 ];
 
 export const EventsPage = () => {

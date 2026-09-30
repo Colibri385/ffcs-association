@@ -22,8 +22,10 @@ const CATEGORIES = [
   'ESCRIME',
   'RUGBY',
   'GOLF',
+  'FOOTBALL',
   'TENNIS DE TABLE',
   'PATINAGE',
+  'VOLLEY'
 ];
 
 export const EventModal = ({ isOpen, onClose, onSave, eventToEdit = null }) => {
@@ -37,7 +39,7 @@ export const EventModal = ({ isOpen, onClose, onSave, eventToEdit = null }) => {
     trackLength: '',
     description: '',
     totalSpots: 20,
-    requirements: 'Casque homologué, permis de conduire et licence FFCS.',
+    requirements: 'Permis de conduire et licence FFCS.',
     imageUrl: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&fit=crop&q=80',
   });
 
@@ -78,7 +80,7 @@ export const EventModal = ({ isOpen, onClose, onSave, eventToEdit = null }) => {
         trackLength: '2.5 km',
         description: 'Journée roulage et entraînement encadrée par la FFCS.',
         totalSpots: 25,
-        requirements: 'Casque homologué, permis B et licence FFCS.',
+        requirements: 'Permis B et licence FFCS.',
         imageUrl: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&fit=crop&q=80',
       });
       setPreviewImage('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&fit=crop&q=80');
