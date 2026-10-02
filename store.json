@@ -108,11 +108,7 @@
   "events": [
     {
       "id": "evt-1790775360353-yag0",
-<<<<<<< HEAD
       "title": "Championnats de France de Table 2027",
-=======
-      "title": "Championnats de France de Tennis de Table 2027",
->>>>>>> 12564cebe9f8e0fd426f57e1505eadf8daf0b6ff
       "category": "Tennis de table",
       "hasRegistration": false,
       "date": "2027-02-12",
