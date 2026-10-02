@@ -211,7 +211,7 @@ export const HomePage = () => {
                 Une Gouvernance Démocratique & Engagée
               </h2>
               <p className="text-sm text-slate-300 leading-relaxed mb-6">
-                La Fédération Française des Conducteurs du Sport est administrée par un Bureau Fédéral élu comprenant le Président, le Vice-Président, la Secrétaire, la Trésorière et les membres du bureau. Les décisions et modifications du site sont validées collégialement par les membres du bureau afin d’assurer l’équité et la sécurité de tous les pilotes.
+                La Fédération Française des Conducteurs du Sport est administrée par un Bureau Fédéral élu comprenant le Président, le Vice-Président, la Secrétaire, la Trésorière et les membres du bureau. Les décisions et modifications du site sont validées collégialement par les membres du bureau.
               </p>
 
               <div className="space-y-3 mb-8">
