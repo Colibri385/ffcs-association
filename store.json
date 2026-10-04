@@ -14,84 +14,6 @@
       "createdAt": "2025-01-01T10:00:00.000Z"
     },
     {
-      "id": "usr_vice_president",
-      "name": "Éléonore Vasseur",
-      "email": "vice-president@ffcs.fr",
-      "passwordHash": "$2b$10$RIMtnVObnyJvJzumqc6kYebLYjY1LV0ZEfFHEwBzRWU3L1q232uRK",
-      "role": "vice_president",
-      "licenseNumber": "FFCS-FR-002",
-      "phone": "+33 6 23 45 67 89",
-      "vehicle": "Adhésion Acquittée",
-      "bio": "Bénévole au JO PARIS 2024.",
-      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&fit=crop&q=80",
-      "createdAt": "2025-01-02T10:00:00.000Z"
-    },
-    {
-      "id": "usr_secretary",
-      "name": "Marc Fontaine",
-      "email": "secretaire@ffcs.fr",
-      "passwordHash": "$2b$10$FrUWUMn7pdCsQgBhd.w8AOJHtCaoQBSa1/DEK9uRxEW.oep4QC5Lm",
-      "role": "vice_president",
-      "licenseNumber": "FFCS-FR-003",
-      "phone": "+33 6 34 56 78 90",
-      "vehicle": "Adhésion Acquittée",
-      "bio": "Procès-verbaux d’assemblée et suivi administratif des licences des adhérents.",
-      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&fit=crop&q=80",
-      "createdAt": "2025-01-03T10:00:00.000Z"
-    },
-    {
-      "id": "usr_treasurer",
-      "name": "Sophie Laurent",
-      "email": "tresorier@ffcs.fr",
-      "passwordHash": "$2b$10$T/R1Zs3MC1vmF0z346KWauzF.NOBxnmL/GU1w1S1HmMNQt6ketUs2",
-      "role": "treasurer",
-      "licenseNumber": "FFCS-FR-004",
-      "phone": "+33 6 45 67 89 01",
-      "vehicle": "Adhésion Acquittée",
-      "bio": "Gestionnaire de la conformité budgétaire et des assurances fédérales.",
-      "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&fit=crop&q=80",
-      "createdAt": "2025-01-04T10:00:00.000Z"
-    },
-    {
-      "id": "usr_board_member",
-      "name": "Julien Rossi",
-      "email": "bureau@ffcs.fr",
-      "passwordHash": "$2b$10$0OdzmcrSGK60h8Fsbra0ROkiDinfgRRmcEYDQ/ENzv8zF6hrHmxkO",
-      "role": "board_member",
-      "licenseNumber": "FFCS-FR-005",
-      "phone": "+33 6 56 78 90 12",
-      "vehicle": "Adhésion Acquittée",
-      "bio": "Bénévole au JO PARIS 2024.",
-      "avatar": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=300&fit=crop&q=80",
-      "createdAt": "2025-01-05T10:00:00.000Z"
-    },
-    {
-      "id": "usr_regular_member",
-      "name": "Lucas Moreau",
-      "email": "pilote@ffcs.fr",
-      "passwordHash": "$2b$10$cX/Ix2uLAw.B6FPeNxMb0ufyY/AXZ4GM5ouZluqTzaEUk2PoTtOHC",
-      "role": "regular_member",
-      "licenseNumber": "FFCS-FR-042",
-      "phone": "+33 6 98 76 54 32",
-      "vehicle": "Adhésion Acquittée",
-      "bio": "Bénévole au JO PARIS 2024.",
-      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&fit=crop&q=80",
-      "createdAt": "2025-02-01T14:20:00.000Z"
-    },
-    {
-      "id": "usr_camille",
-      "name": "Camille Bernard",
-      "email": "camille@ffcs.fr",
-      "passwordHash": "$2b$10$lUgZv1g87UebBn4xtpSZp.ASA.L96uu/CvEMfEKssiwpIo3MzYjjq",
-      "role": "regular_member",
-      "licenseNumber": "FFCS-FR-089",
-      "phone": "+33 6 87 65 43 21",
-      "vehicle": "Adhésion Acquittée",
-      "bio": "Bénévole au JO PARIS 2024.",
-      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&fit=crop&q=80",
-      "createdAt": "2025-02-10T09:15:00.000Z"
-    },
-    {
       "id": "usr_1789914868881_g6gdb",
       "name": "Thierry PEREIRA DA SILVA",
       "email": "colibri385@orange.fr",
@@ -189,9 +111,9 @@
       "term": "2024 - 2028",
       "order": 1,
       "responsibilities": [
-        "Représentation officielle de la FFCS auprès du Ministère des Sports et des circuits",
+        "Représentation officielle de la FFCS",
         "Définition des orientations stratégiques et du règlement sportif fédéral",
-        "Présidence des assemblées générales et des conseils d’administration"
+        "Présidence des assemblées générales"
       ]
     },
     {

@@ -1,11 +1,14 @@
 import React from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth, ROLES } from '../context/AuthContext';
 import RoleBadge from './RoleBadge';
-import { Mail, Phone, Calendar, ShieldCheck, Edit3, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, Calendar, ShieldCheck, Edit3, Trash2, CheckCircle2 } from 'lucide-react';
 
-export const BoardCard = ({ item, onEdit }) => {
-  const { isBoardMember } = useAuth();
+export const BoardCard = ({ item, onEdit, onDelete }) => {
+  const { user: currentUser, isBoardMember } = useAuth();
   const { id, title, department, term, responsibilities = [], user = {} } = item;
+
+  const isPresident = currentUser?.role === ROLES.PRESIDENT;
+  const canDelete = isPresident && item.roleKey !== ROLES.PRESIDENT && user.id !== currentUser?.id;
 
   return (
     <div className="racing-card overflow-hidden flex flex-col group relative border-t-4 border-t-blue-600 hover:border-t-red-600 transition-all duration-300">
@@ -43,15 +46,27 @@ export const BoardCard = ({ item, onEdit }) => {
               </div>
             </div>
 
-            {isBoardMember && (
-              <button
-                onClick={() => onEdit(item)}
-                className="p-1.5 text-slate-400 hover:text-white bg-slate-800/80 hover:bg-blue-600 rounded-lg border border-slate-700 transition-colors"
-                title="Modifier les missions du bureau"
-              >
-                <Edit3 size={15} />
-              </button>
-            )}
+            <div className="flex items-center gap-1.5 shrink-0">
+              {isBoardMember && onEdit && (
+                <button
+                  onClick={() => onEdit(item)}
+                  className="p-1.5 text-slate-400 hover:text-white bg-slate-800/80 hover:bg-blue-600 rounded-lg border border-slate-700 transition-colors"
+                  title="Modifier les missions du bureau"
+                >
+                  <Edit3 size={15} />
+                </button>
+              )}
+
+              {canDelete && onDelete && (
+                <button
+                  onClick={() => onDelete(item)}
+                  className="p-1.5 text-rose-400 hover:text-white bg-slate-800/80 hover:bg-rose-600 rounded-lg border border-slate-700 transition-colors"
+                  title="Supprimer ce membre du bureau (Pouvoir Présidentiel)"
+                >
+                  <Trash2 size={15} />
+                </button>
+              )}
+            </div>
           </div>
 
           {/* Role badge & Mandate */}

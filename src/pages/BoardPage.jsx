@@ -71,6 +71,37 @@ export const BoardPage = () => {
     fetchBoard();
   };
 
+  const handleDeleteBoard = async (item) => {
+    if (!token) return;
+    const memberName = item.user?.name || item.title || 'ce membre';
+    const confirmDelete = window.confirm(
+      `Êtes-vous sûr de vouloir supprimer ${memberName} du Bureau Fédéral ?\n\nCette action retirera sa fiche du bureau et réinitialisera son rôle à Membre Régulier.`
+    );
+    if (!confirmDelete) return;
+
+    try {
+      setError(null);
+      const res = await fetch(`/api/board/${item.id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Erreur lors de la suppression.');
+      }
+
+      setSuccess(data.message || `${memberName} a été retiré du bureau fédéral avec succès.`);
+      setTimeout(() => setSuccess(null), 5000);
+      fetchBoard();
+    } catch (err) {
+      setError(err.message);
+      setTimeout(() => setError(null), 6000);
+    }
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
       {/* Page Header */}
@@ -125,6 +156,7 @@ export const BoardPage = () => {
               key={item.id}
               item={item}
               onEdit={handleEditBoard}
+              onDelete={handleDeleteBoard}
             />
           ))}
         </div>

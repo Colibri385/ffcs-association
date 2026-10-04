@@ -221,4 +221,36 @@ router.put('/:id', requireAuth, (req, res) => {
   }
 });
 
+// DELETE /api/members/:id/board - President can remove a member from the board
+router.delete('/:id/board', requireAuth, (req, res) => {
+  try {
+    if (req.user.role !== ROLES.PRESIDENT) {
+      return res.status(403).json({
+        error: 'Accès réservé : Seul le Président de la FFCS a l’autorisation de retirer un membre du bureau.'
+      });
+    }
+
+    const targetUserId = req.params.id;
+    const targetUser = db.getUserById(targetUserId);
+    if (!targetUser) {
+      return res.status(404).json({ error: 'Membre introuvable.' });
+    }
+
+    if (targetUser.role === ROLES.PRESIDENT) {
+      return res.status(400).json({
+        error: 'Action impossible : Le Président ne peut pas être retiré du bureau.'
+      });
+    }
+
+    db.removeUserFromBoard(targetUserId);
+
+    res.json({
+      message: `${targetUser.name} a été retiré(e) du Bureau Fédéral avec succès et redevient Membre Régulier.`
+    });
+  } catch (err) {
+    console.error('Error removing member from board:', err);
+    res.status(500).json({ error: err.message || 'Erreur lors du retrait du membre du bureau.' });
+  }
+});
+
 export default router;

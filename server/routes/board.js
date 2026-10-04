@@ -1,6 +1,6 @@
 import express from 'express';
-import { db } from '../db.js';
-import { requireBoardMember } from '../middleware/auth.js';
+import { db, ROLES } from '../db.js';
+import { requireAuth, requireBoardMember } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -44,6 +44,39 @@ router.put('/:id', requireBoardMember, (req, res) => {
   } catch (err) {
     console.error('Error updating board member:', err);
     res.status(500).json({ error: 'Erreur lors de la mise à jour.' });
+  }
+});
+
+// DELETE /api/board/:id - Delete a member from the board (PRESIDENT ONLY)
+router.delete('/:id', requireAuth, (req, res) => {
+  try {
+    if (req.user.role !== ROLES.PRESIDENT) {
+      return res.status(403).json({
+        error: 'Accès réservé : Seul le Président de la FFCS a l’autorisation de supprimer un membre du bureau.'
+      });
+    }
+
+    const boardId = req.params.id;
+    const board = db.read().board;
+    const entry = board.find(b => b.id === boardId);
+    if (!entry) {
+      return res.status(404).json({ error: 'Membre du bureau introuvable.' });
+    }
+
+    if (entry.roleKey === ROLES.PRESIDENT) {
+      return res.status(400).json({
+        error: 'Action impossible : Le Président en exercice ne peut pas être supprimé du bureau.'
+      });
+    }
+
+    db.removeBoardMember(boardId);
+
+    res.json({
+      message: 'Le membre a été retiré du Bureau Fédéral avec succès et redevient Membre Régulier.'
+    });
+  } catch (err) {
+    console.error('Error removing board member:', err);
+    res.status(500).json({ error: err.message || 'Erreur lors de la suppression du membre du bureau.' });
   }
 });
 
