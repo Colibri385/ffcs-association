@@ -117,62 +117,6 @@
       ]
     },
     {
-      "id": "bureau_vice_president",
-      "userId": "usr_vice_president",
-      "roleKey": "vice_president",
-      "title": "Vice-Présidente",
-      "department": "Coordination Opérationnelle",
-      "term": "2024 - 2028",
-      "order": 2,
-      "responsibilities": [
-        "Négociation des créneaux de piste et partenariats avec les circuits nationaux",
-        "Supervision du corps des moniteurs diplômés et des stages de pilotage",
-        "Suppléance du Président dans toutes les instances fédérales"
-      ]
-    },
-    {
-      "id": "bureau_secretary",
-      "userId": "usr_secretary",
-      "roleKey": "vice_president",
-      "title": "Vice-Président(e)",
-      "department": "Coordination Sportive",
-      "term": "2024 - 2028",
-      "order": 3,
-      "responsibilities": [
-        "Gestion des adhésions, registres officiels et délivrance des licences pilotes",
-        "Rédaction des procès-verbaux, statuts et règlements intérieurs",
-        "Veille juridique et conformité des dossiers préfectoraux d’épreuves"
-      ]
-    },
-    {
-      "id": "bureau_treasurer",
-      "userId": "usr_treasurer",
-      "roleKey": "treasurer",
-      "title": "Trésorière Générale",
-      "department": "Finances & Assurances",
-      "term": "2024 - 2028",
-      "order": 4,
-      "responsibilities": [
-        "Établissement du budget prévisionnel et gestion des comptes bancaires",
-        "Négociation des polices d’assurance responsabilité civile et corporelle circuit",
-        "Contrôle financier des engagements sur chaque épreuve sportive"
-      ]
-    },
-    {
-      "id": "bureau_board_member",
-      "userId": "usr_board_member",
-      "roleKey": "board_member",
-      "title": "Membre du Bureau & Directeur Technique",
-      "department": "Technique",
-      "term": "2024 - 2028",
-      "order": 5,
-      "responsibilities": [
-        "Validation technique des véhicules engagés (sonomètre, arceau, freinage)",
-        "Formation et coordination des commissaires de piste bénévoles",
-        "Mise en place des protocoles d’intervention rapide et de secours"
-      ]
-    },
-    {
       "id": "bureau_1789914959528",
       "userId": "usr_1789914868881_g6gdb",
       "roleKey": "board_member",
@@ -198,6 +142,6 @@
     },
     "address": "Les Sable d'Olonne",
     "email": "jean-claude.benoit1@orange.fr",
-    "phone": "+33 1 42 68 55 00"
+    "phone": "+330612345678"
   }
 }

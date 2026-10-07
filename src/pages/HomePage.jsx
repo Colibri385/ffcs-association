@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import EventCard from '../components/EventCard';
+import {users} from '../../store.json';
 import {
   Flag,
   Shield,
@@ -136,12 +137,11 @@ export const HomePage = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-2 gap-4 p-6 bg-slate-900/60 border border-slate-800 rounded-2xl backdrop-blur-md">
           <div className="text-center p-3 border-r border-slate-800/80 last:border-0">
-            <div className="font-racing font-extrabold text-3xl sm:text-4xl text-white"><span>{}8</span></div>
+            <div className="font-racing font-extrabold text-3xl sm:text-4xl text-white"><span>{users.length}</span></div>
             <div className="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">
               Membres Adhérents
             </div>
-          </div>
-          
+          </div>        
           <div className="text-center p-3 border-r border-slate-800/80 last:border-0">
             <div className="font-racing font-extrabold text-3xl sm:text-4xl text-red-500"><span>{featuredEvents.length}</span></div>
             <div className="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">
