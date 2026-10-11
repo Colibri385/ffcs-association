@@ -184,7 +184,7 @@ export const BoardPage = () => {
               Président & Vice-Président
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Direction stratégique, représentation auprès des autorités sportives, animation des conseils d'administration et arbitrage fédéral.
+              Direction stratégique, représentation auprès des autorités sportives, animation des s d'administration et arbitrage fédéral.
             </p>
           </div>
 

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import EventCard from '../components/EventCard';
-import {users} from '../../store.json';
 import {
   Flag,
   Shield,

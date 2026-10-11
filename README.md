@@ -35,7 +35,7 @@ Aux couleurs sportives nationales **Bleu, Blanc et Rouge**, le site offre une ex
 
 ### 4. Rôles et Autorisations : Modifications Réservées au Bureau
 - **Rôles supportés :**
-  1. `regular_member` (Membre régulier / Pilote adhérent)
+  1. `regular_member` (Membre régulier / adhérent)
   2. `president` (Président)
   3. `vice_president` (Vice-Président)
   4. `secretary` (Secrétaire)

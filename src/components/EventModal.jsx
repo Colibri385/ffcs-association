@@ -12,26 +12,44 @@ import {
   Info,
   CheckCircle2,
   Trash2,
+  Plus,
+  Tag,
+  FolderPlus,
 } from 'lucide-react';
 import { processImageFile } from '../utils/imageUpload';
 
-const CATEGORIES = [
-  'TENNIS',
-  'ARENA LES SABLES D OLONNE',
-  'FOOTBALL',
-  'ESCRIME',
-  'RUGBY',
-  'GOLF',
-  'FOOTBALL',
-  'TENNIS DE TABLE',
-  'PATINAGE',
-  'VOLLEY'
+const DEFAULT_CATEGORIES = [
+  'Arena Les Sables d Olonne',
+  'Parkings',
+  'Tennis',
+  'Tennis de table',
+  'Football',
+  'Escrime',
+  'Basket',
+  'Rugby',
+  'Golf',
+  'Patinage',
+  'Volley',
+  'Course / Trackday'
 ];
 
-export const EventModal = ({ isOpen, onClose, onSave, eventToEdit = null }) => {
+export const EventModal = ({
+  isOpen,
+  onClose,
+  onSave,
+  eventToEdit = null,
+  availableCategories = []
+}) => {
+  const categoryList = Array.from(
+    new Set([
+      ...(availableCategories.length > 0 ? availableCategories : DEFAULT_CATEGORIES),
+      ...(eventToEdit?.category ? [eventToEdit.category] : [])
+    ])
+  );
+
   const [formData, setFormData] = useState({
     title: '',
-    category: CATEGORIES[0],
+    category: categoryList[0] || 'Arena Les Sables d Olonne',
     hasRegistration: true, // true = avec inscription, false = informatif uniquement
     date: '',
     time: '09:00 - 18:00',
@@ -43,6 +61,8 @@ export const EventModal = ({ isOpen, onClose, onSave, eventToEdit = null }) => {
     imageUrl: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&fit=crop&q=80',
   });
 
+  const [isCreatingNewCategory, setIsCreatingNewCategory] = useState(false);
+  const [newCategoryName, setNewCategoryName] = useState('');
   const [previewImage, setPreviewImage] = useState('');
   const [showUrlFallback, setShowUrlFallback] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
@@ -52,11 +72,14 @@ export const EventModal = ({ isOpen, onClose, onSave, eventToEdit = null }) => {
   const fileInputRef = useRef(null);
 
   useEffect(() => {
+    setIsCreatingNewCategory(false);
+    setNewCategoryName('');
+
     if (eventToEdit) {
       const isReg = eventToEdit.hasRegistration !== false;
       setFormData({
         title: eventToEdit.title || '',
-        category: eventToEdit.category || CATEGORIES[0],
+        category: eventToEdit.category || categoryList[0] || 'Arena Les Sables d Olonne',
         hasRegistration: isReg,
         date: eventToEdit.date || '',
         time: eventToEdit.time || '09:00 - 18:00',
@@ -72,7 +95,7 @@ export const EventModal = ({ isOpen, onClose, onSave, eventToEdit = null }) => {
       // Defaults for new event
       setFormData({
         title: '',
-        category: CATEGORIES[0],
+        category: categoryList[0] || 'Arena Les Sables d Olonne',
         hasRegistration: true,
         date: new Date(Date.now() + 14 * 86400000).toISOString().split('T')[0],
         time: '08:30 - 17:30',
@@ -133,6 +156,15 @@ export const EventModal = ({ isOpen, onClose, onSave, eventToEdit = null }) => {
       return;
     }
 
+    const finalCategory = isCreatingNewCategory
+      ? newCategoryName.trim()
+      : formData.category?.trim();
+
+    if (!finalCategory) {
+      setError('Veuillez sélectionner ou saisir une catégorie pour l’épreuve.');
+      return;
+    }
+
     let spots = 0;
     if (formData.hasRegistration) {
       spots = parseInt(formData.totalSpots, 10);
@@ -152,6 +184,7 @@ export const EventModal = ({ isOpen, onClose, onSave, eventToEdit = null }) => {
       await onSave(
         {
           ...formData,
+          category: finalCategory,
           totalSpots: formData.hasRegistration ? spots : 0,
         },
         eventToEdit?.id
@@ -378,21 +411,77 @@ export const EventModal = ({ isOpen, onClose, onSave, eventToEdit = null }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Category */}
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
-                Catégorie *
-              </label>
-              <select
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
-              >
-                {CATEGORIES.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat}
-                  </option>
-                ))}
-              </select>
+              <div className="flex items-center justify-between mb-1">
+                <label className="block text-xs font-semibold text-slate-300 uppercase">
+                  Catégorie *
+                </label>
+                {!isCreatingNewCategory ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsCreatingNewCategory(true);
+                      setNewCategoryName('');
+                    }}
+                    className="text-[11px] text-amber-400 hover:text-amber-300 font-medium flex items-center gap-1 transition-colors"
+                  >
+                    <Plus size={12} />
+                    <span>+ Nouvelle catégorie</span>
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsCreatingNewCategory(false);
+                      setNewCategoryName('');
+                    }}
+                    className="text-[11px] text-blue-400 hover:text-blue-300 font-medium flex items-center gap-1 transition-colors"
+                  >
+                    <span>← Choisir dans la liste</span>
+                  </button>
+                )}
+              </div>
+
+              {!isCreatingNewCategory ? (
+                <div>
+                  <select
+                    name="category"
+                    value={formData.category}
+                    onChange={(e) => {
+                      if (e.target.value === '__NEW__') {
+                        setIsCreatingNewCategory(true);
+                        setNewCategoryName('');
+                      } else {
+                        handleChange(e);
+                      }
+                    }}
+                    className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
+                  >
+                    {categoryList.map((cat) => (
+                      <option key={cat} value={cat}>
+                        {cat}
+                      </option>
+                    ))}
+                    <option value="__NEW__" className="text-amber-400 font-bold">
+                      ➕ + Ajouter une nouvelle catégorie...
+                    </option>
+                  </select>
+                </div>
+              ) : (
+                <div>
+                  <input
+                    type="text"
+                    value={newCategoryName}
+                    onChange={(e) => setNewCategoryName(e.target.value)}
+                    placeholder="ex: Karting, Badminton, Athlétisme..."
+                    className="w-full px-3.5 py-2.5 bg-slate-800 border border-amber-500/80 rounded-lg text-white text-sm focus:outline-none focus:ring-1 focus:ring-amber-500"
+                    autoFocus
+                    required
+                  />
+                  <span className="text-[10px] text-amber-300/80 block mt-1">
+                    Nouvelle catégorie : elle sera enregistrée avec l'épreuve et ajoutée aux filtres.
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Total Spots (Visible only if hasRegistration is true) */}

@@ -107,7 +107,7 @@ router.put('/:id/role', requireBoardMember, (req, res) => {
           roleKey: role,
           title,
           department: dept,
-          term: '2024 - 2028',
+          term: '2025 - 2028',
           order: data.board.length + 1,
           responsibilities: [
             'Participation aux délibérations du bureau directeur fédéral',
@@ -194,7 +194,7 @@ router.put('/:id', requireAuth, (req, res) => {
           roleKey: effectiveRole,
           title: effectiveRole === ROLES.PRESIDENT ? 'Président Fédéral' : 'Membre du Bureau',
           department: 'Commission Fédérale',
-          term: '2024 - 2028',
+          term: '2025 - 2028',
           order: data.board.length + 1,
           responsibilities: [
             'Participation aux délibérations du bureau directeur fédéral',

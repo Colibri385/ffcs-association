@@ -14,17 +14,19 @@ import {
   Layers,
 } from 'lucide-react';
 
-const CATEGORIES = [
-  'Toutes',
+const DEFAULT_CATEGORIES = [
   'Arena Les Sables d Olonne',
   'Parkings',
   'Tennis',
+  'Tennis de table',
+  'Football',
   'Escrime',
   'Basket',
-  'Football',
-  'Tennis de table',
+  'Rugby',
+  'Golf',
   'Patinage',
-  'Volley'
+  'Volley',
+  'Course / Trackday'
 ];
 
 export const EventsPage = () => {
@@ -33,6 +35,17 @@ export const EventsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
+
+  // Dynamic categories list including defaults + any category from events
+  const allCategories = [
+    'Toutes',
+    ...Array.from(
+      new Set([
+        ...DEFAULT_CATEGORIES,
+        ...events.map((e) => e.category).filter(Boolean),
+      ])
+    ),
+  ];
 
   // Filters
   const [selectedCategory, setSelectedCategory] = useState('Toutes');
@@ -303,7 +316,7 @@ export const EventsPage = () => {
 
         {/* Categories Pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-          {CATEGORIES.map((cat) => (
+          {allCategories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
@@ -374,6 +387,7 @@ export const EventsPage = () => {
           }}
           onSave={handleSaveEvent}
           eventToEdit={editingEvent}
+          availableCategories={allCategories.filter((c) => c !== 'Toutes')}
         />
       )}
     </div>

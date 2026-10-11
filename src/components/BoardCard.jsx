@@ -74,7 +74,7 @@ export const BoardCard = ({ item, onEdit, onDelete }) => {
             <RoleBadge role={user.role} size="sm" />
             <span className="text-xs text-slate-400 flex items-center gap-1">
               <Calendar size={12} className="text-slate-500" />
-              Mandat {term || '2024 - 2028'}
+              Mandat {term || '2025 - 2028'}
             </span>
           </div>
 

@@ -14,7 +14,7 @@ export const EditBoardModal = ({ isOpen, onClose, onSave, item }) => {
     if (item) {
       setTitle(item.title || '');
       setDepartment(item.department || '');
-      setTerm(item.term || '2024 - 2028');
+      setTerm(item.term || '2025 - 2028');
       setResponsibilities(item.responsibilities || []);
     }
     setError(null);

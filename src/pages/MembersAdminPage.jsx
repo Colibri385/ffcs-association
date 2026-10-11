@@ -13,6 +13,7 @@ import {
   Lock,
   Edit,
   UserCheck,
+  Trash2,
 } from 'lucide-react';
 
 const ROLE_OPTIONS = [
@@ -111,6 +112,43 @@ export const MembersAdminPage = () => {
       setTimeout(() => setSuccessMessage(null), 5000);
 
       // Refresh members list and current user context
+      fetchMembers();
+      refreshUser();
+    } catch (err) {
+      setErrorMessage(err.message);
+      setTimeout(() => setErrorMessage(null), 6000);
+    } finally {
+      setUpdatingId(null);
+    }
+  };
+
+  // Handle removing a member from the board (President only)
+  const handleRemoveFromBoard = async (member) => {
+    if (!token) return;
+    const confirmRemove = window.confirm(
+      `Êtes-vous sûr de vouloir retirer ${member.name} du Bureau Fédéral ?\n\nIl/elle redeviendra Membre Régulier.`
+    );
+    if (!confirmRemove) return;
+
+    setUpdatingId(member.id);
+    setErrorMessage(null);
+    setSuccessMessage(null);
+
+    try {
+      const res = await fetch(`/api/members/${member.id}/board`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Erreur lors du retrait du bureau.');
+      }
+
+      setSuccessMessage(data.message);
+      setTimeout(() => setSuccessMessage(null), 5000);
       fetchMembers();
       refreshUser();
     } catch (err) {
@@ -322,6 +360,17 @@ export const MembersAdminPage = () => {
                           >
                             <Edit size={13} />
                             <span className="hidden sm:inline">Modifier la fiche</span>
+                          </button>
+                        )}
+                        {isPresident && BOARD_ROLES.includes(m.role) && m.role !== ROLES.PRESIDENT && m.id !== user.id && (
+                          <button
+                            onClick={() => handleRemoveFromBoard(m)}
+                            disabled={updatingId === m.id}
+                            className="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 transition-all flex items-center gap-1.5 shadow-sm hover:scale-[1.02] disabled:opacity-50"
+                            title="Retirer ce membre du Bureau Fédéral"
+                          >
+                            <Trash2 size={13} />
+                            <span className="hidden sm:inline">Retirer du Bureau</span>
                           </button>
                         )}
                         <select

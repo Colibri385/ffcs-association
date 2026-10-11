@@ -56,7 +56,7 @@ export const getRoleInfo = (role) => {
     case ROLES.BOARD_MEMBER:
       return {
         label: 'Membre du Bureau',
-        fullLabel: 'Membre du Conseil & Bureau Fédéral',
+        fullLabel: 'Membre du bureau Fédéral',
         color: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
         badgeColor: 'bg-cyan-700 text-white font-semibold',
         isBoard: true,
