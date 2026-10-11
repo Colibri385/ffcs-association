@@ -424,7 +424,7 @@ export const EventModal = ({
                     className="text-[11px] text-amber-400 hover:text-amber-300 font-medium flex items-center gap-1 transition-colors"
                   >
                     <Plus size={12} />
-                    <span>+ Nouvelle catégorie</span>
+                    <span>Nouvelle catégorie</span>
                   </button>
                 ) : (
                   <button
@@ -461,7 +461,7 @@ export const EventModal = ({
                       </option>
                     ))}
                     <option value="__NEW__" className="text-amber-400 font-bold">
-                      ➕ + Ajouter une nouvelle catégorie...
+                      ➕ Ajouter une nouvelle catégorie...
                     </option>
                   </select>
                 </div>

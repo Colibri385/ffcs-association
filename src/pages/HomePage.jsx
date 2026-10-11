@@ -115,7 +115,7 @@ export const HomePage = () => {
                 Fédération Française des Conducteurs du Sport
               </span>
             </div>
-
+            <h1 className="font-racing font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight uppercase leading-[1.08] mb-6">F.F.C.S</h1>
             <h1 className="font-racing font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight uppercase leading-[1.08] mb-6">
               Vivez la Passion <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-white to-red-500">du Sport</span>
             </h1>
