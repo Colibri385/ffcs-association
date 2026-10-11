@@ -31,7 +31,11 @@ router.get('/', (req, res) => {
     // Sort by date ascending
     events.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-    res.json({ events });
+    res.json({
+      events,
+      totalEvents: events.length,
+      totalMembers: db.getUsers().length
+    });
   } catch (err) {
     console.error('Error fetching events:', err);
     res.status(500).json({ error: 'Erreur lors de la récupération des événements.' });

@@ -3,6 +3,7 @@ import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { db } from './db.js';
 import { authenticate } from './middleware/auth.js';
 import authRoutes from './routes/auth.js';
 import eventRoutes from './routes/events.js';
@@ -33,6 +34,20 @@ app.use('/api/auth', authRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/board', boardRoutes);
 app.use('/api/members', memberRoutes);
+
+// Public Association Stats
+app.get('/api/stats', (req, res) => {
+  try {
+    const totalMembers = db.getUsers().length;
+    const totalEvents = db.getEvents().length;
+    res.json({
+      totalMembers,
+      totalEvents
+    });
+  } catch (err) {
+    res.status(500).json({ error: 'Erreur lors de la récupération des statistiques.' });
+  }
+});
 
 // Health check
 app.get('/api/health', (req, res) => {

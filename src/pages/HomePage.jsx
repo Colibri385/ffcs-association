@@ -17,6 +17,8 @@ import {
 export const HomePage = () => {
   const { isLoggedIn, isBoardMember } = useAuth();
   const [featuredEvents, setFeaturedEvents] = useState([]);
+  const [memberCount, setMemberCount] = useState(0);
+  const [totalEventsCount, setTotalEventsCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
   const fetchEvents = async () => {
@@ -26,6 +28,28 @@ export const HomePage = () => {
         const data = await res.json();
         // Take first 3 upcoming events
         setFeaturedEvents((data.events || []).slice(0, 3));
+        if (typeof data.totalMembers === 'number') {
+          setMemberCount(data.totalMembers);
+        }
+        if (typeof data.totalEvents === 'number') {
+          setTotalEventsCount(data.totalEvents);
+        }
+      }
+
+      // Complementary check via /api/stats for real-time count
+      try {
+        const statsRes = await fetch('/api/stats');
+        if (statsRes.ok) {
+          const stats = await statsRes.json();
+          if (typeof stats.totalMembers === 'number') {
+            setMemberCount(stats.totalMembers);
+          }
+          if (typeof stats.totalEvents === 'number') {
+            setTotalEventsCount(stats.totalEvents);
+          }
+        }
+      } catch (e) {
+        // Ignorer si indisponible
       }
     } catch (err) {
       console.error('Error fetching featured events:', err);
@@ -136,13 +160,17 @@ export const HomePage = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-2 gap-4 p-6 bg-slate-900/60 border border-slate-800 rounded-2xl backdrop-blur-md">
           <div className="text-center p-3 border-r border-slate-800/80 last:border-0">
-            <div className="font-racing font-extrabold text-3xl sm:text-4xl text-white"><span>{users.length}</span></div>
+            <div className="font-racing font-extrabold text-3xl sm:text-4xl text-white">
+              <span>{memberCount}</span>
+            </div>
             <div className="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">
               Membres Adhérents
             </div>
           </div>        
           <div className="text-center p-3 border-r border-slate-800/80 last:border-0">
-            <div className="font-racing font-extrabold text-3xl sm:text-4xl text-red-500"><span>{featuredEvents.length}</span></div>
+            <div className="font-racing font-extrabold text-3xl sm:text-4xl text-red-500">
+              <span>{totalEventsCount || featuredEvents.length}</span>
+            </div>
             <div className="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">
               Épreuves en cours
             </div>
@@ -171,7 +199,7 @@ export const HomePage = () => {
             to="/events"
             className="inline-flex items-center gap-1.5 text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors"
           >
-            <span>Voir tout le calendrier ({featuredEvents.length}+)</span>
+            <span>Voir tout le calendrier ({totalEventsCount || featuredEvents.length}+)</span>
             <ArrowRight size={16} />
           </Link>
         </div>

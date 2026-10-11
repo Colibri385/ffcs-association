@@ -29,8 +29,7 @@ const DEFAULT_CATEGORIES = [
   'Rugby',
   'Golf',
   'Patinage',
-  'Volley',
-  'Course / Trackday'
+  'Volley'
 ];
 
 export const EventModal = ({
