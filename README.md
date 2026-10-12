@@ -20,7 +20,7 @@ Aux couleurs sportives nationales **Bleu, Blanc et Rouge**, le site offre une ex
   - Jauge en temps réel (`X places disponibles sur Y`).
   - Blocage automatique des inscriptions dès que l’épreuve est complète (`Complet / Sold Out`).
   - Protection contre les doublons d'inscription.
-  - Possibilité pour le pilote d'annuler son engagement à tout moment, libérant instantanément une place pour la communauté.
+  - Possibilité pour le adhérent d'annuler son engagement à tout moment, libérant instantanément une place pour la communauté.
 - Fiche détaillée pour chaque épreuve avec tracé, spécifications du circuit, horaires, consignes de sécurité (bruit max, casque FIA, équipement requis).
 - Roster officiel des engagés avec nom, véhicule et licence (et coordonnées de contact réservées aux membres du bureau pour la direction de course).
 
@@ -83,7 +83,7 @@ npm run build
 | **Secrétaire** | Marc Fontaine | `secretaire@ffcs.fr` | `Secretaire2026!` | Membre du bureau, suivi administratif des licences |
 | **Trésorière** | Sophie Laurent | `tresorier@ffcs.fr` | `Tresorier2026!` | Membre du bureau, validation budgétaire des épreuves |
 | **Membre Bureau** | Julien Rossi | `bureau@ffcs.fr` | `Bureau2026!` | Membre du bureau, direction technique et sécurité |
-| **Membre Régulier** | Lucas Moreau | `pilote@ffcs.fr` | `Pilote2026!` | Inscription libre aux épreuves avec places disponibles |
+| **Membre Régulier** | Lucas Moreau | `adhérent@ffcs.fr` | `adhérent2026!` | Inscription libre aux épreuves avec places disponibles |
 
 ---
 

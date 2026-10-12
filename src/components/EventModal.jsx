@@ -401,7 +401,7 @@ export const EventModal = ({
               name="title"
               value={formData.title}
               onChange={handleChange}
-              placeholder="ex: Track Day & Coaching Pilote - Circuit Paul Ricard"
+              placeholder="ex: Track Day & Coaching adhérent - Circuit Paul Ricard"
               className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
               required
             />
@@ -501,7 +501,7 @@ export const EventModal = ({
                 />
                 {eventToEdit && (
                   <span className="text-[11px] text-slate-400 mt-0.5 block">
-                    Actuellement : {eventToEdit.registeredCount} pilote(s) inscrit(s)
+                    Actuellement : {eventToEdit.registeredCount} adhérent(s) inscrit(s)
                   </span>
                 )}
               </div>

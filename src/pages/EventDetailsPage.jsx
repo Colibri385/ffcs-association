@@ -306,7 +306,7 @@ export const EventDetailsPage = () => {
                 <span>Modalités de l’Épreuve</span>
               </h2>
               <p className="text-sm text-slate-300 leading-relaxed">
-                Cet événement est proposé à titre exclusivement informatif pour l’ensemble des membres et passionnés de la FFCS. Aucune inscription préalable de pilote n’est requise sur le site pour y assister ou y prendre part. Rendez-vous directement sur place aux horaires indiqués pour profiter de l’événement !
+                Cet événement est proposé à titre exclusivement informatif pour l’ensemble des membres et passionnés de la FFCS. Aucune inscription préalable de adhérent n’est requise sur le site pour y assister ou y prendre part. Rendez-vous directement sur place aux horaires indiqués pour profiter de l’événement !
               </p>
             </div>
           ) : (
@@ -336,7 +336,7 @@ export const EventDetailsPage = () => {
 
               {participants.length === 0 ? (
                 <div className="text-center py-8 text-slate-500 text-sm italic">
-                  Aucun pilote inscrit pour le moment. Soyez le premier à prendre le départ !
+                  Aucun adhérent inscrit pour le moment. Soyez le premier à prendre le départ !
                 </div>
               ) : (
                 <div className="divide-y divide-slate-800">
@@ -354,7 +354,7 @@ export const EventDetailsPage = () => {
                             <RoleBadge role={p.role} size="xs" />
                           </div>
                           <div className="text-xs text-slate-400 flex items-center gap-2">
-                            <span>{p.vehicle || 'Pilote Sportif'}</span>
+                            <span>{p.vehicle || 'adhérent Sportif'}</span>
                             {p.licenseNumber && (
                               <>
                                 <span>•</span>

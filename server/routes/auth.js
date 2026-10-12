@@ -53,7 +53,7 @@ router.post('/register', async (req, res) => {
       licenseNumber,
       phone: phone || '',
       vehicle: vehicle || '',
-      bio: bio || 'Pilote passionné adhérent à la FFCS.',
+      bio: bio || 'adhérent passionné adhérent à la FFCS.',
       avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(name)}`,
       createdAt: new Date().toISOString()
     };
@@ -131,7 +131,7 @@ router.post('/demo-login', (req, res) => {
         break;
       case ROLES.REGULAR_MEMBER:
       default:
-        targetEmail = 'pilote@ffcs.fr';
+        targetEmail = 'adhérent@ffcs.fr';
         break;
     }
 

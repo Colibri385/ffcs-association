@@ -47,7 +47,7 @@ export const DemoSwitcher = () => {
       role: ROLES.REGULAR_MEMBER,
       name: 'Lucas Moreau',
       title: 'Membre Régulier',
-      desc: 'Pilote adhérent, inscription épreuves sans droits bureau',
+      desc: 'adhérent adhérent, inscription épreuves sans droits bureau',
       badgeColor: 'bg-slate-700/40 text-slate-300 border-slate-600',
     },
   ];

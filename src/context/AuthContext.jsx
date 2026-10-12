@@ -65,7 +65,7 @@ export const getRoleInfo = (role) => {
     default:
       return {
         label: 'Membre Régulier',
-        fullLabel: 'Pilote Adhérent FFCS',
+        fullLabel: 'adhérent Adhérent FFCS',
         color: 'bg-slate-700/30 text-slate-300 border-slate-700',
         badgeColor: 'bg-slate-800 text-slate-300 font-medium',
         isBoard: false,

@@ -332,7 +332,7 @@ export const MembersAdminPage = () => {
                         {m.licenseNumber || 'En attente'}
                       </div>
                       <div className="text-xs text-slate-400 truncate max-w-xs">
-                        {m.vehicle || 'Pilote'}
+                        {m.vehicle || 'adhérent'}
                       </div>
                     </td>
 
