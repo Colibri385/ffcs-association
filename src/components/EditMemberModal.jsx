@@ -7,7 +7,7 @@ const ROLE_OPTIONS = [
   { value: ROLES.REGULAR_MEMBER, label: 'Membre Régulier' },
   { value: ROLES.PRESIDENT, label: 'Président (Direction Générale)' },
   { value: ROLES.VICE_PRESIDENT, label: 'Vice-Président' },
-  { value: ROLES.SECRETARY, label: 'Secrétaire (Administration & Licences)' },
+  { value: ROLES.SECRETARY, label: 'Secrétaire ( & Licences)' },
   { value: ROLES.TREASURER, label: 'Trésorier (Finances & Assurances)' },
   { value: ROLES.BOARD_MEMBER, label: 'Membre du Bureau (Technique & Sécurité)' },
 ];
