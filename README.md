@@ -79,7 +79,7 @@ npm run build
 | Rôle | Nom | Email | Mot de passe | Privilèges |
 |---|---|---|---|---|
 | **Président** | Pierre de Courcelles | `president@ffcs.fr` | `President2026!` | Modification complète du site, bureau, épreuves et rôles |
-| **Vice-Présidente** | Éléonore Vasseur | `vice-president@ffcs.fr` | `VicePres2026!` | Membre du bureau, gestion des épreuves et partenariats |
+| **Vice-Présidente** | Éléonore Vasseur | `sident@ffcs.fr` | `VicePres2026!` | Membre du bureau, gestion des épreuves et partenariats |
 | **Secrétaire** | Marc Fontaine | `secretaire@ffcs.fr` | `Secretaire2026!` | Membre du bureau, suivi administratif des licences |
 | **Trésorière** | Sophie Laurent | `tresorier@ffcs.fr` | `Tresorier2026!` | Membre du bureau, validation budgétaire des épreuves |
 | **Membre Bureau** | Julien Rossi | `bureau@ffcs.fr` | `Bureau2026!` | Membre du bureau, direction technique et sécurité |

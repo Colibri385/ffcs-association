@@ -223,7 +223,7 @@ export const EventModal = ({ isOpen, onClose, onSave, eventToEdit = null }) => {
                 <div>
                   <div className="text-xs font-bold">Avec Inscription</div>
                   <div className="text-[11px] text-slate-400 mt-0.5 leading-tight">
-                    Épreuve sportive avec quota de places et engagement des pilotes.
+                    Épreuve sportive avec quota de places.
                   </div>
                 </div>
               </button>
@@ -520,7 +520,7 @@ export const EventModal = ({ isOpen, onClose, onSave, eventToEdit = null }) => {
               name="requirements"
               value={formData.requirements}
               onChange={handleChange}
-              placeholder="ex: Entrée libre spectateurs, ou Casque FIA obligatoire pour les pilotes"
+              placeholder="ex: Entrée libre spectateurs"
               className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
             />
           </div>

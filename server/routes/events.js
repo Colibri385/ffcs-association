@@ -125,7 +125,7 @@ router.post('/:id/unregister', requireAuth, (req, res) => {
     }
 
     res.json({
-      message: 'Votre désistement a été pris en compte. Une place a été libérée pour les autres pilotes.',
+      message: 'Votre désistement a été pris en compte. Une place a été libérée pour les autres adhérents.',
       event: formatEvent(result.event, userId),
       remainingSpots: result.remainingSpots
     });

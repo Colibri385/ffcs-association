@@ -91,7 +91,7 @@ router.put('/:id/role', requireBoardMember, (req, res) => {
       // If newly promoted to board or changed board role, make sure they are in board list
       let title = 'Membre du Bureau';
       let dept = 'Commission Fédérale';
-      if (role === ROLES.PRESIDENT) { title = 'Président Fédéral'; dept = 'Direction Générale'; }
+      if (role === ROLES.PRESIDENT) { title = 'Président(e) Fédéral(e)'; dept = 'Direction Générale'; }
       if (role === ROLES.VICE_PRESIDENT) { title = 'Vice-Président(e)'; dept = 'Coordination Sportive'; }
       if (role === ROLES.SECRETARY) { title = 'Secrétaire Général(e)'; dept = 'Administration & Licences'; }
       if (role === ROLES.TREASURER) { title = 'Trésorier(ère) Général(e)'; dept = 'Finances & Assurances'; }

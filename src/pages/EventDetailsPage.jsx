@@ -76,7 +76,7 @@ export const EventDetailsPage = () => {
 
   const handleUnregister = async () => {
     if (!token) return;
-    if (!window.confirm('Confirmez-vous l’annulation de votre participation ? Une place sera libérée pour les autres pilotes.')) {
+    if (!window.confirm('Confirmez-vous l’annulation de votre participation ? Une place sera libérée pour les autres adhérents.')) {
       return;
     }
 
@@ -315,7 +315,7 @@ export const EventDetailsPage = () => {
                 <div>
                   <h2 className="font-racing font-bold text-2xl text-white flex items-center gap-2">
                     <Users size={22} className="text-blue-400" />
-                    <span>Pilotes Engagés ({participants.length} / {totalSpots})</span>
+                    <span>Adhérents Engagés ({participants.length} / {totalSpots})</span>
                   </h2>
                   <p className="text-xs text-slate-400 mt-0.5">
                     Liste officielle des participants enregistrés sur cette épreuve.
