@@ -178,7 +178,7 @@ export const BoardPage = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
             <div className="font-racing font-bold text-lg text-amber-400 mb-1">
               Président & Vice-Président
@@ -188,21 +188,30 @@ export const BoardPage = () => {
             </p>
           </div>
 
+          <div className="p-4 rounded-xl bg-slate-950/60 border border-purple-900/40">
+            <div className="font-racing font-bold text-lg text-purple-400 mb-1">
+              Webmaster Fédéral
+            </div>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Administration technique, gestion de la plateforme digitale et des fiches membres avec les mêmes droits que le Président.
+            </p>
+          </div>
+
           <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
             <div className="font-racing font-bold text-lg text-blue-400 mb-1">
               Secrétaire & Trésorier
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Tenue des registres d'adhésion, gestion des adhérents, procès-verbaux légaux, gestion des budgets d'épreuves et polices d'assurance circuit.
+              Tenue des registres d'adhésion, gestion des adhérents, procès-verbaux légaux, gestion des budgets et polices d'assurance.
             </p>
           </div>
 
           <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
             <div className="font-racing font-bold text-lg text-slate-300 mb-1">
-              Membres du Bureau & Membres Réguliers
+              Membres du Bureau
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Les membres du bureau préparent les moyens et aident à l'organisation des évènements.
+              Les membres du bureau préparent les moyens et aident activement à l'organisation des évènements.
             </p>
           </div>
         </div>

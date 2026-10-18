@@ -23,6 +23,7 @@ const ROLE_OPTIONS = [
   { value: ROLES.SECRETARY, label: 'Secrétaire', isBoard: true },
   { value: ROLES.TREASURER, label: 'Trésorier', isBoard: true },
   { value: ROLES.BOARD_MEMBER, label: 'Membre du Bureau', isBoard: true },
+  { value: ROLES.WEBMASTER, label: 'Webmaster', isBoard: true },
 ];
 
 export const MembersAdminPage = () => {
@@ -36,7 +37,7 @@ export const MembersAdminPage = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [editingMember, setEditingMember] = useState(null);
 
-  const isPresident = user?.role === ROLES.PRESIDENT;
+  const isSuperAdmin = user?.role === ROLES.PRESIDENT || user?.role === ROLES.WEBMASTER;
 
   const handleSaveMemberFile = async (memberId, formData) => {
     if (!token) return;
@@ -226,20 +227,24 @@ export const MembersAdminPage = () => {
         </div>
       )}
 
-      {/* President Exclusive Notice */}
-      {isPresident && (
-        <div className="p-4 rounded-xl bg-amber-950/40 border border-amber-600/50 text-amber-200 text-xs flex items-center justify-between gap-4 shadow-lg">
+      {/* President & Webmaster Exclusive Notice */}
+      {isSuperAdmin && (
+        <div className="p-4 rounded-xl bg-gradient-to-r from-amber-950/40 via-purple-950/40 to-slate-900 border border-amber-500/40 text-amber-200 text-xs flex items-center justify-between gap-4 shadow-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-amber-500/20 rounded-lg border border-amber-500/40 text-amber-300 shrink-0">
               <Crown size={20} />
             </div>
             <div>
-              <strong className="text-sm font-bold text-white block">Privilège Exclusif de la Présidence Fédérale</strong>
-              <span>En tant que Président, vous avez le pouvoir de modifier l’intégralité des fiches de tous les membres (coordonnées, photos de profil, licence, véhicule, bio, rôles).</span>
+              <strong className="text-sm font-bold text-white block">
+                Privilège Exclusif d'Administration Fédérale ({user.role === ROLES.PRESIDENT ? 'Présidence' : 'Webmaster'})
+              </strong>
+              <span>
+                En tant que {user.role === ROLES.PRESIDENT ? 'Président' : 'Webmaster'}, vous avez le pouvoir de modifier l’intégralité des fiches de tous les membres (coordonnées, photos de profil, licence, véhicule, bio, rôles) et de retirer des membres du bureau.
+              </span>
             </div>
           </div>
-          <span className="hidden md:inline-block px-3 py-1 bg-amber-500 text-slate-950 rounded-full font-bold text-[10px] uppercase tracking-wider">
-            Président Actif
+          <span className="hidden md:inline-block px-3 py-1 bg-gradient-to-r from-amber-500 to-purple-600 text-white rounded-full font-bold text-[10px] uppercase tracking-wider shadow">
+            {user.role === ROLES.PRESIDENT ? 'Président Actif' : 'Webmaster Actif'}
           </span>
         </div>
       )}
@@ -271,6 +276,7 @@ export const MembersAdminPage = () => {
             <option value={ROLES.SECRETARY}>Secrétaire</option>
             <option value={ROLES.TREASURER}>Trésorier</option>
             <option value={ROLES.BOARD_MEMBER}>Membre du Bureau</option>
+            <option value={ROLES.WEBMASTER}>Webmaster</option>
           </select>
         </div>
       </div>
@@ -349,20 +355,20 @@ export const MembersAdminPage = () => {
                       </span>
                     </td>
 
-                    {/* Actions: President Edit File + Role Selector */}
+                    {/* Actions: President & Webmaster Edit File + Role Selector */}
                     <td className="py-4 px-6 text-right">
                       <div className="flex items-center justify-end gap-2">
-                        {isPresident && (
+                        {isSuperAdmin && (
                           <button
                             onClick={() => setEditingMember(m)}
                             className="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 transition-all flex items-center gap-1.5 shadow-sm hover:scale-[1.02]"
-                            title="Modifier l'intégralité de la fiche du membre (Pouvoir Présidentiel)"
+                            title="Modifier l'intégralité de la fiche du membre (Pouvoir Présidentiel & Webmaster)"
                           >
                             <Edit size={13} />
                             <span className="hidden sm:inline">Modifier la fiche</span>
                           </button>
                         )}
-                        {isPresident && BOARD_ROLES.includes(m.role) && m.role !== ROLES.PRESIDENT && m.id !== user.id && (
+                        {isSuperAdmin && BOARD_ROLES.includes(m.role) && m.role !== ROLES.PRESIDENT && m.id !== user.id && (
                           <button
                             onClick={() => handleRemoveFromBoard(m)}
                             disabled={updatingId === m.id}
@@ -395,8 +401,8 @@ export const MembersAdminPage = () => {
         </div>
       </div>
 
-      {/* President Member Edit Modal */}
-      {isPresident && (
+      {/* President & Webmaster Member Edit Modal */}
+      {isSuperAdmin && (
         <EditMemberModal
           isOpen={!!editingMember}
           onClose={() => setEditingMember(null)}

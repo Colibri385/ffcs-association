@@ -9,6 +9,7 @@ export const ROLES = {
   SECRETARY: 'secretary',
   TREASURER: 'treasurer',
   BOARD_MEMBER: 'board_member',
+  WEBMASTER: 'webmaster',
 };
 
 export const BOARD_ROLES = [
@@ -17,7 +18,10 @@ export const BOARD_ROLES = [
   ROLES.SECRETARY,
   ROLES.TREASURER,
   ROLES.BOARD_MEMBER,
+  ROLES.WEBMASTER,
 ];
+
+export const isPresidentOrWebmaster = (role) => role === ROLES.PRESIDENT || role === ROLES.WEBMASTER;
 
 export const getRoleInfo = (role) => {
   switch (role) {
@@ -48,7 +52,7 @@ export const getRoleInfo = (role) => {
     case ROLES.TREASURER:
       return {
         label: 'Trésorier',
-        fullLabel: 'Trésorier Général',
+        fullLabel: ' Général',
         color: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
         badgeColor: 'bg-emerald-600 text-white font-semibold',
         isBoard: true,
@@ -59,6 +63,14 @@ export const getRoleInfo = (role) => {
         fullLabel: 'Membre du bureau Fédéral',
         color: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
         badgeColor: 'bg-cyan-700 text-white font-semibold',
+        isBoard: true,
+      };
+    case ROLES.WEBMASTER:
+      return {
+        label: 'Webmaster',
+        fullLabel: 'Webmaster du Bureau Fédéral',
+        color: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
+        badgeColor: 'bg-purple-700 text-white font-semibold',
         isBoard: true,
       };
     case ROLES.REGULAR_MEMBER:
@@ -213,6 +225,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const isBoardMember = user ? BOARD_ROLES.includes(user.role) : false;
+  const isPresident = user?.role === ROLES.PRESIDENT;
+  const isWebmaster = user?.role === ROLES.WEBMASTER;
+  const canManageAll = user ? isPresidentOrWebmaster(user.role) : false;
 
   return (
     <AuthContext.Provider
@@ -228,6 +243,10 @@ export const AuthProvider = ({ children }) => {
         refreshUser,
         isLoggedIn: !!user,
         isBoardMember,
+        isPresident,
+        isWebmaster,
+        isPresidentOrWebmaster: canManageAll,
+        canManageAll,
       }}
     >
       {children}

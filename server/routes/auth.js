@@ -129,10 +129,14 @@ router.post('/demo-login', (req, res) => {
       case ROLES.BOARD_MEMBER:
         targetEmail = 'bureau@ffcs.fr';
         break;
+       case ROLES.WEBMASTER:
+        targetEmail = 'webmaster@ffcs.fr';
+        break;  
       case ROLES.REGULAR_MEMBER:
       default:
         targetEmail = 'adhérent@ffcs.fr';
         break;
+     
     }
 
     const user = db.getUserByEmail(targetEmail);

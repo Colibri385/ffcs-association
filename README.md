@@ -41,6 +41,7 @@ Aux couleurs sportives nationales **Bleu, Blanc et Rouge**, le site offre une ex
   4. `secretary` (Secrétaire)
   5. `treasurer` (Trésorier)
   6. `board_member` (Membre du Bureau)
+  7. `webmaster` (developpeur du site)
 - **Règle de sécurité stricte :** *« Les modifications sur le site ne peuvent être effectuées que par un membre du bureau. »*
   - Seuls les membres du bureau ont accès à la création, modification et suppression d'épreuves sportives.
   - Seuls les membres du bureau peuvent modifier la composition et les fiches du bureau.

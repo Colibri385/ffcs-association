@@ -19,6 +19,7 @@ export const ROLES = {
   SECRETARY: 'secretary',
   TREASURER: 'treasurer',
   BOARD_MEMBER: 'board_member',
+  WEBMASTER: 'webmaster',
 };
 
 export const BOARD_ROLES = [
@@ -27,9 +28,11 @@ export const BOARD_ROLES = [
   ROLES.SECRETARY,
   ROLES.TREASURER,
   ROLES.BOARD_MEMBER,
+  ROLES.WEBMASTER
 ];
 
 export const isBoardRole = (role) => BOARD_ROLES.includes(role);
+export const isPresidentOrWebmaster = (role) => role === ROLES.PRESIDENT || role === ROLES.WEBMASTER;
 
 const saltRounds = 10;
 

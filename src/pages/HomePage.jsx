@@ -17,7 +17,7 @@ import {
 export const HomePage = () => {
   const { isLoggedIn, isBoardMember } = useAuth();
   const [featuredEvents, setFeaturedEvents] = useState([]);
-  const [memberCount, setMemberCount] = useState(0);
+  const [memberCount, setMemberCount] = useState(3);
   const [totalEventsCount, setTotalEventsCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
@@ -28,7 +28,7 @@ export const HomePage = () => {
         const data = await res.json();
         // Take first 3 upcoming events
         setFeaturedEvents((data.events || []).slice(0, 3));
-        if (typeof data.totalMembers === 'number') {
+        if (typeof data.totalMembers === 'number' && data.totalMembers > 0) {
           setMemberCount(data.totalMembers);
         }
         if (typeof data.totalEvents === 'number') {
@@ -41,11 +41,26 @@ export const HomePage = () => {
         const statsRes = await fetch('/api/stats');
         if (statsRes.ok) {
           const stats = await statsRes.json();
-          if (typeof stats.totalMembers === 'number') {
+          if (typeof stats.totalMembers === 'number' && stats.totalMembers > 0) {
             setMemberCount(stats.totalMembers);
           }
           if (typeof stats.totalEvents === 'number') {
             setTotalEventsCount(stats.totalEvents);
+          }
+        }
+      } catch (e) {
+        // Ignorer si indisponible
+      }
+
+      // Fallback check via /api/board
+      try {
+        const boardRes = await fetch('/api/board');
+        if (boardRes.ok) {
+          const boardData = await boardRes.json();
+          if (typeof boardData.totalMembers === 'number' && boardData.totalMembers > 0) {
+            setMemberCount(boardData.totalMembers);
+          } else if (Array.isArray(boardData.board) && boardData.board.length > 0) {
+            setMemberCount((prev) => (prev > 0 ? prev : boardData.board.length));
           }
         }
       } catch (e) {
@@ -245,7 +260,7 @@ export const HomePage = () => {
                 <div className="flex items-start gap-3">
                   <CheckCircle size={18} className="text-emerald-400 shrink-0 mt-0.5" />
                   <span className="text-xs sm:text-sm text-slate-200">
-                    <strong>Rôles statutaires clairs :</strong> Président, Vice-Président, Secrétaire, Trésorier, Membre du Bureau et Membre régulier.
+                    <strong>Rôles statutaires clairs :</strong> Président, Vice-Président, Secrétaire, Trésorier, Membre du Bureau, Webmaster et Membre régulier.
                   </span>
                 </div>
                 <div className="flex items-start gap-3">

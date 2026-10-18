@@ -1,5 +1,5 @@
 import express from 'express';
-import { db, ROLES, isBoardRole, BOARD_ROLES } from '../db.js';
+import { db, ROLES, isBoardRole, BOARD_ROLES, isPresidentOrWebmaster } from '../db.js';
 import { requireAuth, requireBoardMember } from '../middleware/auth.js';
 
 const router = express.Router();
@@ -95,6 +95,7 @@ router.put('/:id/role', requireBoardMember, (req, res) => {
       if (role === ROLES.VICE_PRESIDENT) { title = 'Vice-Président(e)'; dept = 'Coordination Sportive'; }
       if (role === ROLES.SECRETARY) { title = 'Secrétaire Général(e)'; dept = 'Administration & Licences'; }
       if (role === ROLES.TREASURER) { title = 'Trésorier(ère) Général(e)'; dept = 'Finances & Assurances'; }
+      if (role === ROLES.WEBMASTER) { title = 'Webmaster Fédéral'; dept = 'Direction Technique & Numérique'; }
 
       if (existingBoardEntryIndex >= 0) {
         data.board[existingBoardEntryIndex].roleKey = role;
@@ -136,13 +137,13 @@ router.put('/:id/role', requireBoardMember, (req, res) => {
   }
 });
 
-// PUT /api/members/:id - President can modify any member's file (Nom, email, phone, licence, véhicule, bio, avatar, rôle)
+// PUT /api/members/:id - President or Webmaster can modify any member's file (Nom, email, phone, licence, véhicule, bio, avatar, rôle)
 router.put('/:id', requireAuth, (req, res) => {
   try {
-    // Only the President can modify all members' files
-    if (req.user.role !== ROLES.PRESIDENT) {
+    // Only the President or Webmaster can modify all members' files
+    if (!isPresidentOrWebmaster(req.user.role)) {
       return res.status(403).json({
-        error: 'Accès réservé : Seul le Président de la FFCS a l’autorisation de modifier les fiches de l’ensemble des membres.'
+        error: 'Accès réservé : Seuls le Président et le Webmaster de la FFCS ont l’autorisation de modifier les fiches de l’ensemble des membres.'
       });
     }
 
@@ -211,8 +212,9 @@ router.put('/:id', requireAuth, (req, res) => {
     }
 
     const { passwordHash, ...safeUser } = updatedUser;
+    const actorTitle = req.user.role === ROLES.PRESIDENT ? 'la Présidence' : 'le Webmaster';
     res.json({
-      message: `Fiche de ${updatedUser.name} mise à jour avec succès par la Présidence.`,
+      message: `Fiche de ${updatedUser.name} mise à jour avec succès par ${actorTitle}.`,
       member: safeUser
     });
   } catch (err) {
@@ -221,12 +223,12 @@ router.put('/:id', requireAuth, (req, res) => {
   }
 });
 
-// DELETE /api/members/:id/board - President can remove a member from the board
+// DELETE /api/members/:id/board - President or Webmaster can remove a member from the board
 router.delete('/:id/board', requireAuth, (req, res) => {
   try {
-    if (req.user.role !== ROLES.PRESIDENT) {
+    if (!isPresidentOrWebmaster(req.user.role)) {
       return res.status(403).json({
-        error: 'Accès réservé : Seul le Président de la FFCS a l’autorisation de retirer un membre du bureau.'
+        error: 'Accès réservé : Seuls le Président et le Webmaster de la FFCS ont l’autorisation de retirer un membre du bureau.'
       });
     }
 
@@ -239,6 +241,12 @@ router.delete('/:id/board', requireAuth, (req, res) => {
     if (targetUser.role === ROLES.PRESIDENT) {
       return res.status(400).json({
         error: 'Action impossible : Le Président ne peut pas être retiré du bureau.'
+      });
+    }
+
+    if (targetUserId === req.user.id) {
+      return res.status(400).json({
+        error: 'Action impossible : Vous ne pouvez pas vous retirer vous-même du bureau.'
       });
     }
 

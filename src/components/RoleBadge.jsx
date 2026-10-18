@@ -1,5 +1,5 @@
 import React from 'react';
-import { Crown, Shield, FileText, Landmark, Users, User, Award } from 'lucide-react';
+import { Crown, Shield, FileText, Landmark, Users, User, Award, Globe } from 'lucide-react';
 import { ROLES, getRoleInfo } from '../context/AuthContext';
 
 export const RoleBadge = ({ role, showIcon = true, size = 'sm' }) => {
@@ -18,6 +18,8 @@ export const RoleBadge = ({ role, showIcon = true, size = 'sm' }) => {
         return <Landmark size={iconSize} className="text-emerald-300" />;
       case ROLES.BOARD_MEMBER:
         return <Shield size={iconSize} className="text-cyan-300" />;
+      case ROLES.WEBMASTER:
+        return <Globe size={iconSize} className="text-purple-400" />;
       case ROLES.REGULAR_MEMBER:
       default:
         return <User size={iconSize} className="text-slate-400" />;

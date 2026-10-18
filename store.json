@@ -18,7 +18,7 @@
       "name": "Thierry PEREIRA DA SILVA",
       "email": "colibri385@orange.fr",
       "passwordHash": "$2b$10$U023HZuvMnPIqpcotnxhluzwkVOGcWaC4fEiOmeWee1t94YDEaYJW",
-      "role": "board_member",
+      "role": "webmaster",
       "licenseNumber": "FFCS-FR-013",
       "phone": "+33676688781",
       "vehicle": "Adhésion Acquittée",
@@ -110,7 +110,8 @@
         "usr_vice_president",
         "usr_board_member",
         "usr_1789914868881_g6gdb",
-        "usr_president"
+        "usr_president",
+        "usr_webmaster"
       ]
     }
   ],
@@ -132,14 +133,15 @@
     {
       "id": "bureau_1789914959528",
       "userId": "usr_1789914868881_g6gdb",
-      "roleKey": "board_member",
-      "title": "Membre du Bureau",
-      "department": "Commission Fédérale",
+      "roleKey": "webmaster",
+      "title": "Webmaster Fédéral",
+      "department": "Direction Technique & Numérique",
       "term": "2025 - 2028",
-      "order": 6,
+      "order": 2,
       "responsibilities": [
-        "Participation aux délibérations du bureau directeur fédéral",
-        "Soutien à l’organisation des épreuves et à la sécurité"
+        "Gestion et maintenance de la plateforme digitale et du site officiel FFCS",
+        "Administration des systèmes, sécurité et publication des épreuves sportives",
+        "Soutien technique et droits d'administration complets au sein du bureau fédéral"
       ]
     },
     {

@@ -10,6 +10,7 @@ const ROLE_OPTIONS = [
   { value: ROLES.SECRETARY, label: 'Secrétaire ( & Licences)' },
   { value: ROLES.TREASURER, label: 'Trésorier (Finances & Assurances)' },
   { value: ROLES.BOARD_MEMBER, label: 'Membre du Bureau (Technique & Sécurité)' },
+  { value: ROLES.WEBMASTER, label: 'Webmaster (Développement Digital)' },
 ];
 
 export const EditMemberModal = ({ isOpen, onClose, onSave, member }) => {
@@ -96,7 +97,7 @@ export const EditMemberModal = ({ isOpen, onClose, onSave, member }) => {
           <div>
             <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-400">
               <Crown size={15} />
-              <span>Pouvoir Présidentiel FFCS</span>
+              <span>Pouvoir d’Administration Fédérale (Présidence & Webmaster)</span>
             </div>
             <h2 className="text-2xl font-racing font-bold text-white mt-0.5">
               Modifier la Fiche Membre : {member.name}
@@ -304,7 +305,7 @@ export const EditMemberModal = ({ isOpen, onClose, onSave, member }) => {
               ) : (
                 <>
                   <Check size={16} />
-                  <span>Valider les modifications présidentielles</span>
+                  <span>Valider les modifications fédérales</span>
                 </>
               )}
             </button>

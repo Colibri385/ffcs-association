@@ -7,8 +7,8 @@ export const BoardCard = ({ item, onEdit, onDelete }) => {
   const { user: currentUser, isBoardMember } = useAuth();
   const { id, title, department, term, responsibilities = [], user = {} } = item;
 
-  const isPresident = currentUser?.role === ROLES.PRESIDENT;
-  const canDelete = isPresident && item.roleKey !== ROLES.PRESIDENT && user.id !== currentUser?.id;
+  const isSuperAdmin = currentUser?.role === ROLES.PRESIDENT || currentUser?.role === ROLES.WEBMASTER;
+  const canDelete = isSuperAdmin && item.roleKey !== ROLES.PRESIDENT && user.id !== currentUser?.id;
 
   return (
     <div className="racing-card overflow-hidden flex flex-col group relative border-t-4 border-t-blue-600 hover:border-t-red-600 transition-all duration-300">

@@ -1,5 +1,5 @@
 import express from 'express';
-import { db, ROLES } from '../db.js';
+import { db, ROLES, isPresidentOrWebmaster } from '../db.js';
 import { requireAuth, requireBoardMember } from '../middleware/auth.js';
 
 const router = express.Router();
@@ -9,10 +9,12 @@ router.get('/', (req, res) => {
   try {
     const board = db.getBoard();
     const info = db.getAssociationInfo();
+    const totalMembers = db.getUsers().length;
 
     res.json({
       board,
-      associationInfo: info
+      associationInfo: info,
+      totalMembers
     });
   } catch (err) {
     console.error('Error fetching board:', err);
@@ -47,12 +49,12 @@ router.put('/:id', requireBoardMember, (req, res) => {
   }
 });
 
-// DELETE /api/board/:id - Delete a member from the board (PRESIDENT ONLY)
+// DELETE /api/board/:id - Delete a member from the board (PRESIDENT & WEBMASTER)
 router.delete('/:id', requireAuth, (req, res) => {
   try {
-    if (req.user.role !== ROLES.PRESIDENT) {
+    if (!isPresidentOrWebmaster(req.user.role)) {
       return res.status(403).json({
-        error: 'Accès réservé : Seul le Président de la FFCS a l’autorisation de supprimer un membre du bureau.'
+        error: 'Accès réservé : Seuls le Président et le Webmaster de la FFCS ont l’autorisation de supprimer un membre du bureau.'
       });
     }
 
@@ -66,6 +68,12 @@ router.delete('/:id', requireAuth, (req, res) => {
     if (entry.roleKey === ROLES.PRESIDENT) {
       return res.status(400).json({
         error: 'Action impossible : Le Président en exercice ne peut pas être supprimé du bureau.'
+      });
+    }
+
+    if (entry.userId === req.user.id) {
+      return res.status(400).json({
+        error: 'Action impossible : Vous ne pouvez pas vous supprimer vous-même du bureau.'
       });
     }
 
