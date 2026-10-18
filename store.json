@@ -171,5 +171,18 @@
     "address": "Les Sable d'Olonne",
     "email": "jean-claude.benoit1@orange.fr",
     "phone": "+330612345678"
-  }
+  },
+  "categories": [
+    "Arena Les Sables d Olonne",
+    "Parkings",
+    "Tennis",
+    "Tennis de table",
+    "Football",
+    "Escrime",
+    "Basket",
+    "Rugby",
+    "Golf",
+    "Patinage",
+    "Volley"
+  ]
 }
