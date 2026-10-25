@@ -259,7 +259,7 @@ export const EventsPage = () => {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Rechercher par épreuve, circuit ou ville (ex: Paul Ricard, Cévennes)..."
+              placeholder="Rechercher par épreuve (tennis, football, etc.)"
               className="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-700/80 rounded-xl text-white text-sm focus:outline-none focus:border-blue-500 shadow-inner"
             />
           </div>

@@ -401,7 +401,7 @@ export const EventModal = ({
               name="title"
               value={formData.title}
               onChange={handleChange}
-              placeholder="ex: Track Day & Coaching adhérent - Circuit Paul Ricard"
+              placeholder="ex: Tennis Sable d Olonne"
               className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
               required
             />
