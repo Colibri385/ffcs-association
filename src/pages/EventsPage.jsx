@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '../context/AuthContext';
 import EventCard from '../components/EventCard';
 import EventModal from '../components/EventModal';
@@ -14,20 +14,6 @@ import {
   Layers,
 } from 'lucide-react';
 
-const DEFAULT_CATEGORIES = [
-  'Arena Les Sables d Olonne',
-  'Parkings',
-  'Tennis',
-  'Tennis de table',
-  'Football',
-  'Escrime',
-  'Basket',
-  'Rugby',
-  'Golf',
-  'Patinage',
-  'Volley'
-];
-
 export const EventsPage = () => {
   const { user, isLoggedIn, isBoardMember, token } = useAuth();
   const [events, setEvents] = useState([]);
@@ -35,21 +21,28 @@ export const EventsPage = () => {
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
 
-  // Dynamic categories list including defaults + any category from events
-  const allCategories = [
-    'Toutes',
-    ...Array.from(
-      new Set([
-        ...DEFAULT_CATEGORIES,
-        ...events.map((e) => e.category).filter(Boolean),
-      ])
-    ),
-  ];
+  // Dynamic categories list based strictly on existing event cards (correlated with actual events)
+  const existingCategories = useMemo(() => {
+    return Array.from(
+      new Set(events.map((e) => e.category?.trim()).filter(Boolean))
+    ).sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
+  }, [events]);
+
+  const allCategories = useMemo(() => {
+    return ['Toutes', ...existingCategories];
+  }, [existingCategories]);
 
   // Filters
   const [selectedCategory, setSelectedCategory] = useState('Toutes');
   const [searchQuery, setSearchQuery] = useState('');
   const [availabilityFilter, setAvailabilityFilter] = useState('all'); // 'all', 'available', 'registered'
+
+  // If the active filter category no longer exists in any event card, reset to 'Toutes'
+  useEffect(() => {
+    if (selectedCategory !== 'Toutes' && !existingCategories.includes(selectedCategory)) {
+      setSelectedCategory('Toutes');
+    }
+  }, [existingCategories, selectedCategory]);
 
   // Modal State
   const [modalOpen, setModalOpen] = useState(false);
@@ -386,7 +379,7 @@ export const EventsPage = () => {
           }}
           onSave={handleSaveEvent}
           eventToEdit={editingEvent}
-          availableCategories={allCategories.filter((c) => c !== 'Toutes')}
+          availableCategories={existingCategories}
         />
       )}
     </div>

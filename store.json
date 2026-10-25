@@ -66,7 +66,7 @@
       "date": "2026-09-27",
       "time": "08:00 - 23:00",
       "location": "VendéSpace à La Roche sur Yon",
-      "trackLength": "Conducteur ",
+      "trackLength": "Eau, Sandwichs et accréditation",
       "description": "Conduire les athlètes  sur leur lieux de compétition, hôtel, Aéroport.",
       "totalSpots": 0,
       "requirements": "Permis B",
@@ -82,14 +82,15 @@
       "date": "2027-08-18",
       "time": "15:30 - 23:30",
       "location": "Arena les sables d'olonne",
-      "trackLength": "Circuit homologué FFCS",
+      "trackLength": "Eau, Sandwichs et accréditation",
       "description": "Parking Tabarly 1 : Gestion du stationnement ",
       "totalSpots": 25,
       "requirements": "Permis de conduire B et licence FFCS.",
       "imageUrl": "/Arena.png",
       "createdBy": "usr_1789914868881_g6gdb",
       "createdAt": "2026-09-23T08:05:57.460Z",
-      "registeredUserIds": []
+      "registeredUserIds": [],
+      "hasRegistration": true
     },
     {
       "id": "evt-arena",
