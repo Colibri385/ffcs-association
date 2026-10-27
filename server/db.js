@@ -33,6 +33,10 @@ export const BOARD_ROLES = [
 
 export const isBoardRole = (role) => BOARD_ROLES.includes(role);
 export const isPresidentOrWebmaster = (role) => role === ROLES.PRESIDENT || role === ROLES.WEBMASTER;
+export const isNewsManager = (role) =>
+  role === ROLES.PRESIDENT ||
+  role === ROLES.VICE_PRESIDENT ||
+  role === ROLES.WEBMASTER;
 
 const saltRounds = 10;
 
@@ -138,7 +142,19 @@ class Database {
         address: "Les Sables d'Olonne",
         email: 'jean-claude.benoit1@orange.fr',
         phone: '+33 6 12 34 56 78'
-      }
+      },
+      news: [
+        {
+          id: 'news_1791800000000',
+          title: 'Bienvenue sur le portail officiel de la FFCS',
+          content: 'La Fédération Française des Conducteurs du Sport vous souhaite la bienvenue. Retrouvez ici toutes les actualités fédérales, le calendrier officiel des épreuves sportives et les informations d’engagement pour nos bénévoles.',
+          category: 'Officiel',
+          priority: 'high',
+          authorName: 'La Présidence & Direction Fédérale',
+          createdAt: new Date().toISOString(),
+          createdBy: 'usr_president'
+        }
+      ]
     };
     this.write(data);
     console.log('Database initialized and seeded.');
@@ -350,6 +366,60 @@ class Database {
   // Association Info
   getAssociationInfo() {
     return this.read().associationInfo;
+  }
+
+  // News (Actualités Fédérales)
+  getNews() {
+    const data = this.read();
+    if (!data.news || !Array.isArray(data.news)) {
+      data.news = [];
+      this.write(data);
+    }
+    return data.news;
+  }
+
+  getNewsById(id) {
+    return this.getNews().find(n => n.id === id);
+  }
+
+  createNews(newsItem) {
+    const data = this.read();
+    if (!data.news || !Array.isArray(data.news)) {
+      data.news = [];
+    }
+    data.news.unshift(newsItem);
+    this.write(data);
+    return newsItem;
+  }
+
+  updateNews(id, updates) {
+    const data = this.read();
+    if (!data.news || !Array.isArray(data.news)) {
+      data.news = [];
+    }
+    const index = data.news.findIndex(n => n.id === id);
+    if (index === -1) return null;
+    data.news[index] = {
+      ...data.news[index],
+      ...updates,
+      updatedAt: new Date().toISOString()
+    };
+    this.write(data);
+    return data.news[index];
+  }
+
+  deleteNews(id) {
+    const data = this.read();
+    if (!data.news || !Array.isArray(data.news)) {
+      return false;
+    }
+    const initialLen = data.news.length;
+    data.news = data.news.filter(n => n.id !== id);
+    if (data.news.length !== initialLen) {
+      this.write(data);
+      return true;
+    }
+    return false;
   }
 }
 

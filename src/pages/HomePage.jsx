@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import EventCard from '../components/EventCard';
+import NewsSection from '../components/NewsSection';
 import {
   Flag,
   Shield,
@@ -193,6 +194,9 @@ export const HomePage = () => {
           
         </div>
       </section>
+
+      {/* Official News / Flash Info Window */}
+      <NewsSection />
 
       {/* Featured Ongoing Events */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

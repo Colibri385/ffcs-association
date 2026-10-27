@@ -98,7 +98,6 @@ export const Footer = () => {
           <p>© 2026 FFCS - Fédération Française des Conducteurs du Sport. Tous droits réservés.</p>
           <div className="flex items-center gap-6">
             <span>Règlement Sportif Fédéral</span>
-            <span>Charte Sécurité Circuit</span>
             <span>Statuts de l’Association</span>
           </div>
         </div>

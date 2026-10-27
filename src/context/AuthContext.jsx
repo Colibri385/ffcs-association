@@ -22,6 +22,10 @@ export const BOARD_ROLES = [
 ];
 
 export const isPresidentOrWebmaster = (role) => role === ROLES.PRESIDENT || role === ROLES.WEBMASTER;
+export const isNewsManager = (role) =>
+  role === ROLES.PRESIDENT ||
+  role === ROLES.VICE_PRESIDENT ||
+  role === ROLES.WEBMASTER;
 
 export const getRoleInfo = (role) => {
   switch (role) {
@@ -226,8 +230,10 @@ export const AuthProvider = ({ children }) => {
 
   const isBoardMember = user ? BOARD_ROLES.includes(user.role) : false;
   const isPresident = user?.role === ROLES.PRESIDENT;
+  const isVicePresident = user?.role === ROLES.VICE_PRESIDENT;
   const isWebmaster = user?.role === ROLES.WEBMASTER;
   const canManageAll = user ? isPresidentOrWebmaster(user.role) : false;
+  const canManageNews = user ? isNewsManager(user.role) : false;
 
   return (
     <AuthContext.Provider
@@ -244,9 +250,12 @@ export const AuthProvider = ({ children }) => {
         isLoggedIn: !!user,
         isBoardMember,
         isPresident,
+        isVicePresident,
         isWebmaster,
         isPresidentOrWebmaster: canManageAll,
         canManageAll,
+        canManageNews,
+        isNewsManager: canManageNews,
       }}
     >
       {children}

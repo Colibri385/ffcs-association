@@ -9,6 +9,7 @@ import authRoutes from './routes/auth.js';
 import eventRoutes from './routes/events.js';
 import boardRoutes from './routes/board.js';
 import memberRoutes from './routes/members.js';
+import newsRoutes from './routes/news.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -34,6 +35,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/board', boardRoutes);
 app.use('/api/members', memberRoutes);
+app.use('/api/news', newsRoutes);
 
 // Public Association Stats
 app.get('/api/stats', (req, res) => {

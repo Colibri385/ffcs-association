@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { db, isBoardRole } from '../db.js';
+import { db, isBoardRole, isNewsManager } from '../db.js';
 
 export const JWT_SECRET = process.env.JWT_SECRET || 'ffcs-motorsport-secret-key-2026';
 
@@ -43,6 +43,22 @@ export const requireBoardMember = (req, res, next) => {
   if (!isBoardRole(req.user.role)) {
     return res.status(403).json({
       error: 'Accès restreint : Seuls les membres du bureau ont l’autorisation de modifier le site.',
+      userRole: req.user.role
+    });
+  }
+
+  next();
+};
+
+// Strict check for News: Only President, Vice-President, and Webmaster
+export const requireNewsManager = (req, res, next) => {
+  if (!req.user) {
+    return res.status(401).json({ error: 'Authentification requise.' });
+  }
+
+  if (!isNewsManager(req.user.role)) {
+    return res.status(403).json({
+      error: 'Accès restreint : Seuls le Président, le Vice-Président et le Webmaster ont l’autorisation de gérer les actualités.',
       userRole: req.user.role
     });
   }
