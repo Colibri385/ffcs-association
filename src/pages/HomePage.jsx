@@ -327,14 +327,14 @@ export const HomePage = () => {
               Prêt à Prendre le Départ ?
             </h2>
             <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto mb-8">
-              Créez votre compte membre gratuitement en 30 secondes pour réserver vos places sur les prochaines journées piste et rallyes.
+              Créez votre compte membre gratuitement en 30 secondes pour réserver vos places sur les prochains évènements.
             </p>
             <Link
               to="/register"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white bg-red-600 hover:bg-red-500 shadow-xl shadow-red-900/40 transition-all duration-200 hover:scale-[1.03]"
             >
               <Zap size={18} />
-              <span>Créer Mon Compte Membre Gratuitement</span>
+              <span>Créer Mon Compte Membre</span>
             </Link>
           </div>
         </section>

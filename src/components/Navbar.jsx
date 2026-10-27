@@ -285,7 +285,7 @@ export const Navbar = () => {
                   onClick={() => setMobileMenuOpen(false)}
                   className="w-full text-center px-4 py-2 text-sm font-bold text-white bg-gradient-to-r from-blue-700 to-red-600 rounded-lg shadow"
                 >
-                  Inscription Gratuite
+                  Inscription
                 </Link>
               </>
             )}
