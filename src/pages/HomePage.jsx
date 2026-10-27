@@ -137,7 +137,7 @@ export const HomePage = () => {
             </h1>
 
             <p className="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
-              Rejoignez la fédération officielle des passionnés du sport. Consultez les évènements sportifs en cours et engagez-vous comme bénévoles.
+              Rejoignez la Fédération Française des Conducteurs du Sport. Consultez les évènements sportifs en cours et engagez-vous comme bénévoles.
             </p>
 
             {/* CTA Buttons */}
