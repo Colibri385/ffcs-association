@@ -8,7 +8,7 @@ Aux couleurs sportives nationales **Bleu, Blanc et Rouge**, le site offre une ex
 
 ## 🌟 Fonctionnalités Clés
 
-### 1. Inscription Libre & Gratuite pour Chaque Membre
+### 1. Inscription Libre &  pour Chaque Membre
 - Formulaire d’inscription pour les adhérents avec nom, email, mot de passe, Adhésion, téléphone et palmarès/bio.
 - Attribution automatique du rôle officiel de **Membre Régulier** (`regular_member`).
 - Génération instantanée d'un numéro de licence officiel fédéral (ex: `FFCS-FR-042`).

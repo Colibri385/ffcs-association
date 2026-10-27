@@ -156,7 +156,7 @@ export const HomePage = () => {
                   className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-slate-200 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 transition-all duration-300 flex items-center justify-center gap-2"
                 >
                   <Zap size={18} className="text-amber-400" />
-                  <span>Inscription Gratuite Adhérent</span>
+                  <span>Inscription Adhérent</span>
                 </Link>
               )}
 

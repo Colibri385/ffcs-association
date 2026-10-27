@@ -164,7 +164,7 @@ export const Navbar = () => {
                   to="/register"
                   className="px-3.5 py-1.5 text-xs font-bold text-white bg-gradient-to-r from-blue-700 to-red-600 hover:from-blue-600 hover:to-red-500 rounded-lg shadow-md transition-all duration-200 hover:scale-[1.02]"
                 >
-                  Inscription Gratuite
+                  Inscription
                 </Link>
               </div>
             )}
