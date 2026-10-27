@@ -172,6 +172,9 @@ export const HomePage = () => {
         </div>
       </section>
 
+      {/* Official News / Flash Info Window */}
+      <NewsSection />
+
       {/* Key Stats Bar */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-2 gap-4 p-6 bg-slate-900/60 border border-slate-800 rounded-2xl backdrop-blur-md">
@@ -194,9 +197,6 @@ export const HomePage = () => {
           
         </div>
       </section>
-
-      {/* Official News / Flash Info Window */}
-      <NewsSection />
 
       {/* Featured Ongoing Events */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
