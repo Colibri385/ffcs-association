@@ -254,7 +254,7 @@ export const HomePage = () => {
                 Organisation Fédérale
               </span>
               <h2 className="font-racing font-extrabold text-3xl sm:text-4xl text-white uppercase mb-4">
-                Une Gouvernance Démocratique & Engagée
+                LE BUREAU
               </h2>
               <p className="text-sm text-slate-300 leading-relaxed mb-6">
                 La Fédération Française des Conducteurs du Sport est administrée par un Bureau Fédéral élu comprenant le Président, le Vice-Président, la Secrétaire, la Trésorière et les membres du bureau. Les décisions et modifications du site sont validées collégialement par les membres du bureau.

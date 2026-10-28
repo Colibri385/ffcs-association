@@ -147,7 +147,7 @@ class Database {
         {
           id: 'news_1791800000000',
           title: 'Bienvenue sur le portail officiel de la FFCS',
-          content: 'La Fédération Française des Conducteurs du Sport vous souhaite la bienvenue. Retrouvez ici toutes les actualités fédérales, le calendrier officiel des épreuves sportives et les informations d’engagement pour nos bénévoles.',
+          content: 'La Fédération Française des Conducteurs du Sport vous souhaite la bienvenue. Retrouvez ici toutes les actualités fédérales, le calendrier des épreuves sportives et les informations d’engagement pour nos bénévoles.',
           category: 'Officiel',
           priority: 'high',
           authorName: 'La Présidence & Direction Fédérale',
