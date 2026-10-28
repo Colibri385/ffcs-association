@@ -92,5 +92,5 @@ npm run build
 
 - **Bleu Fédéral :** `#123B70` / `#1D4ED8` (vitesse, autorité institutionnelle, précision technique)
 - **Blanc Pur :** `#FFFFFF` (clarté, drapeaux de départ, contrastes lumineux)
-- **Rouge Compétition :** `#DC2626` / `#EF4444` (passion automobile, vibreurs de circuit, dynamisme)
+- **Rouge Compétition :** `#DC2626` / `#EF4444` (passion automobile, vibreurs de t, dynamisme)
 - **Carbone & Nuit :** `#0B1120` / `#131D31` (matériaux composites, ambiance nocturne paddock)

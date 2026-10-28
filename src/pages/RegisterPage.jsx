@@ -209,7 +209,7 @@ export const RegisterPage = () => {
             disabled={loading}
             className="w-full py-3.5 px-4 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 hover:from-blue-600 hover:to-red-500 shadow-xl shadow-red-950/30 transition-all duration-200 hover:scale-[1.01] disabled:opacity-50"
           >
-            {loading ? 'Création de votre licence en cours...' : 'Finaliser Mon Inscription'}
+            {loading ? 'Création de votre inscription en cours...' : 'Finaliser Mon Inscription'}
           </button>
         </form>
 

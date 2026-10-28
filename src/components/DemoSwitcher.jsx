@@ -19,7 +19,7 @@ export const DemoSwitcher = () => {
       role: ROLES.VICE_PRESIDENT,
       name: 'Éléonore Vasseur',
       title: 'Vice-Présidente',
-      desc: 'Membre du bureau, gestion des circuits & épreuves',
+      desc: 'Membre du bureau, gestion des évènements',
       badgeColor: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40',
     },
     {
@@ -47,7 +47,7 @@ export const DemoSwitcher = () => {
       role: ROLES.REGULAR_MEMBER,
       name: 'Lucas Moreau',
       title: 'Membre Régulier',
-      desc: 'adhérent adhérent, inscription épreuves sans droits bureau',
+      desc: 'adhérent, inscription épreuves sans droits bureau',
       badgeColor: 'bg-slate-700/40 text-slate-300 border-slate-600',
     },
   ];

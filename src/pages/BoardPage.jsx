@@ -116,7 +116,7 @@ export const BoardPage = () => {
         </h1>
 
         <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-          Le Bureau Fédéral de la Fédération Française des Conducteurs du Sport assure la direction exécutive de l'association, la supervision des épreuves sportives et l'application des règlements de sécurité sur les circuits.
+          Le Bureau Fédéral de la Fédération Française des Conducteurs du Sport assure la direction exécutive de l'association, la supervision des épreuves sportives et l'application des règlements de sécurité sur les évènements
         </p>
 
         {isBoardMember && (

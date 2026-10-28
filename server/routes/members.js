@@ -137,7 +137,7 @@ router.put('/:id/role', requireBoardMember, (req, res) => {
   }
 });
 
-// PUT /api/members/:id - President or Webmaster can modify any member's file (Nom, email, phone, licence, véhicule, bio, avatar, rôle)
+// PUT /api/members/:id - President or Webmaster can modify any member's file (Nom, email, phone, bio, avatar, rôle)
 router.put('/:id', requireAuth, (req, res) => {
   try {
     // Only the President or Webmaster can modify all members' files

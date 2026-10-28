@@ -239,7 +239,7 @@ export const MembersAdminPage = () => {
                 Privilège Exclusif d'Administration Fédérale ({user.role === ROLES.PRESIDENT ? 'Présidence' : 'Webmaster'})
               </strong>
               <span>
-                En tant que {user.role === ROLES.PRESIDENT ? 'Président' : 'Webmaster'}, vous avez le pouvoir de modifier l’intégralité des fiches de tous les membres (coordonnées, photos de profil, licence, véhicule, bio, rôles) et de retirer des membres du bureau.
+                En tant que {user.role === ROLES.PRESIDENT ? 'Président' : 'Webmaster'}, vous avez le pouvoir de modifier l’intégralité des fiches de tous les membres (coordonnées, photos de profil, bio, rôles) et de retirer des membres du bureau.
               </span>
             </div>
           </div>
@@ -288,7 +288,7 @@ export const MembersAdminPage = () => {
             <thead>
               <tr className="border-b border-slate-800 bg-slate-950/60 text-[11px] font-bold uppercase tracking-wider text-slate-400">
                 <th className="py-4 px-6">Adhérent</th>
-                <th className="py-4 px-4">Licence & Véhicule</th>
+                <th className="py-4 px-4">Licence</th>
                 <th className="py-4 px-4">Rôle Actuel</th>
                 <th className="py-4 px-4">Inscriptions</th>
                 <th className="py-4 px-6 text-right">Actions Fédérales</th>
