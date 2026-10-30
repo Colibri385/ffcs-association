@@ -73,7 +73,7 @@ export const RegisterPage = () => {
             Inscription Membre FFCS
           </h1>
           <p className="text-xs text-slate-400 mt-1 max-w-sm mx-auto">
-            Rejoignez gratuitement la Fédération Française des Conducteurs du Sport et accédez aux inscriptions pour chaque épreuve.
+            Rejoignez la Fédération Française des Conducteurs du Sport et accédez aux inscriptions pour chaque épreuve.
           </p>
         </div>
 

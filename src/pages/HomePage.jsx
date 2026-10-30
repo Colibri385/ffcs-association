@@ -270,7 +270,7 @@ export const HomePage = () => {
                 <div className="flex items-start gap-3">
                   <CheckCircle size={18} className="text-blue-400 shrink-0 mt-0.5" />
                   <span className="text-xs sm:text-sm text-slate-200">
-                    <strong>Accès libre & gratuit :</strong> Tout bénévoles licenciés peut s’inscrire gratuitement pour accéder aux évènements sportifs proposés.
+                    <strong>Accès libre & gratuit :</strong> Tout bénévoles licenciés peut s’inscrire pour accéder aux évènements sportifs proposés.
                   </span>
                 </div>
                 <div className="flex items-start gap-3">
@@ -327,7 +327,7 @@ export const HomePage = () => {
               Prêt à Prendre le Départ ?
             </h2>
             <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto mb-8">
-              Créez votre compte membre gratuitement en 30 secondes pour réserver vos places sur les prochains évènements.
+              Créez votre compte membre en 30 secondes pour réserver vos places sur les prochains évènements.
             </p>
             <Link
               to="/register"
