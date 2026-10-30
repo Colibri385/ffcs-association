@@ -259,7 +259,7 @@ export const EditMemberModal = ({ isOpen, onClose, onSave, member }) => {
 
             <div>
               <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
-                
+                Adhésion
               </label>
               <input
                 type="text"
