@@ -21,10 +21,14 @@ import {
   Camera,
   Upload,
   Download,
+  Lock,
+  KeyRound,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 
 export const DashboardPage = () => {
-  const { user, token, updateProfile } = useAuth();
+  const { user, token, updateProfile, changePassword } = useAuth();
   const [myEvents, setMyEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState(null);
@@ -44,6 +48,18 @@ export const DashboardPage = () => {
     avatar: '',
   });
   const [savingProfile, setSavingProfile] = useState(false);
+
+  // Change Password State
+  const [editingPassword, setEditingPassword] = useState(false);
+  const [passwordData, setPasswordData] = useState({
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: '',
+  });
+  const [showPasswords, setShowPasswords] = useState(false);
+  const [savingPassword, setSavingPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState(null);
+  const [passwordSuccess, setPasswordSuccess] = useState(null);
 
   useEffect(() => {
     if (user) {
@@ -145,6 +161,46 @@ export const DashboardPage = () => {
       setError(err.message);
     } finally {
       setSavingProfile(false);
+    }
+  };
+
+  const handleSavePassword = async (e) => {
+    e.preventDefault();
+    setPasswordError(null);
+    setPasswordSuccess(null);
+
+    if (passwordData.newPassword.length < 6) {
+      setPasswordError('Le nouveau mot de passe doit comporter au moins 6 caractères.');
+      return;
+    }
+
+    if (passwordData.newPassword !== passwordData.confirmPassword) {
+      setPasswordError('Le nouveau mot de passe et sa confirmation ne correspondent pas.');
+      return;
+    }
+
+    try {
+      setSavingPassword(true);
+      const res = await changePassword({
+        currentPassword: passwordData.currentPassword,
+        newPassword: passwordData.newPassword,
+        confirmPassword: passwordData.confirmPassword,
+      });
+
+      setPasswordSuccess(res.message || 'Votre mot de passe a été modifié avec succès.');
+      setPasswordData({
+        currentPassword: '',
+        newPassword: '',
+        confirmPassword: '',
+      });
+      setTimeout(() => {
+        setPasswordSuccess(null);
+        setEditingPassword(false);
+      }, 3000);
+    } catch (err) {
+      setPasswordError(err.message || 'Erreur lors de la modification du mot de passe.');
+    } finally {
+      setSavingPassword(false);
     }
   };
 
@@ -379,6 +435,123 @@ export const DashboardPage = () => {
             ) : (
               <div className="space-y-2 text-xs text-slate-300">
                 <p className="text-slate-400 italic">« {user.bio || 'Adhérent FFCS.'} »</p>
+              </div>
+            )}
+          </div>
+
+          {/* Security & Password Card */}
+          <div className="p-6 rounded-2xl bg-slate-900/70 border border-slate-800">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <Lock size={18} className="text-amber-400" />
+                <h3 className="font-racing font-bold text-lg text-white">Sécurité & Mot de passe</h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setEditingPassword(!editingPassword);
+                  setPasswordError(null);
+                  setPasswordSuccess(null);
+                }}
+                className="text-xs text-amber-400 hover:text-amber-300 flex items-center gap-1 font-semibold transition-colors"
+              >
+                <KeyRound size={13} />
+                <span>{editingPassword ? 'Fermer' : 'Modifier'}</span>
+              </button>
+            </div>
+
+            {editingPassword ? (
+              <form onSubmit={handleSavePassword} className="space-y-3">
+                {passwordError && (
+                  <div className="p-3 rounded-lg bg-rose-950/80 border border-rose-800 text-rose-200 text-xs flex items-center gap-2">
+                    <AlertCircle size={15} className="text-rose-400 shrink-0" />
+                    <span>{passwordError}</span>
+                  </div>
+                )}
+                {passwordSuccess && (
+                  <div className="p-3 rounded-lg bg-emerald-950/80 border border-emerald-800 text-emerald-200 text-xs flex items-center gap-2">
+                    <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+                    <span>{passwordSuccess}</span>
+                  </div>
+                )}
+
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-400 uppercase mb-1">
+                    Mot de passe actuel
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showPasswords ? 'text' : 'password'}
+                      value={passwordData.currentPassword}
+                      onChange={(e) =>
+                        setPasswordData({ ...passwordData, currentPassword: e.target.value })
+                      }
+                      placeholder="••••••••"
+                      className="w-full px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-xs focus:outline-none focus:border-amber-500 pr-9"
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPasswords(!showPasswords)}
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors"
+                      title={showPasswords ? 'Masquer' : 'Afficher'}
+                    >
+                      {showPasswords ? <EyeOff size={14} /> : <Eye size={14} />}
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-400 uppercase mb-1">
+                    Nouveau mot de passe
+                  </label>
+                  <input
+                    type={showPasswords ? 'text' : 'password'}
+                    value={passwordData.newPassword}
+                    onChange={(e) =>
+                      setPasswordData({ ...passwordData, newPassword: e.target.value })
+                    }
+                    placeholder="Au moins 6 caractères"
+                    className="w-full px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-xs focus:outline-none focus:border-amber-500"
+                    required
+                    minLength={6}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-400 uppercase mb-1">
+                    Confirmer le nouveau mot de passe
+                  </label>
+                  <input
+                    type={showPasswords ? 'text' : 'password'}
+                    value={passwordData.confirmPassword}
+                    onChange={(e) =>
+                      setPasswordData({ ...passwordData, confirmPassword: e.target.value })
+                    }
+                    placeholder="Confirmez à l'identique"
+                    className="w-full px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-xs focus:outline-none focus:border-amber-500"
+                    required
+                    minLength={6}
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={savingPassword}
+                  className="w-full py-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-slate-950 font-bold rounded-lg text-xs transition-colors shadow-sm disabled:opacity-50"
+                >
+                  {savingPassword ? 'Modification...' : 'Mettre à jour mon mot de passe'}
+                </button>
+              </form>
+            ) : (
+              <div className="space-y-1.5 text-xs text-slate-400">
+                <p>
+                  Vous pouvez modifier votre mot de passe à tout moment pour sécuriser l'accès à votre espace.
+                </p>
+                <div className="flex items-center gap-1.5 text-[11px] text-slate-500 font-mono pt-1">
+                  <Shield size={12} className="text-emerald-400" />
+                  <span>Protection par chiffrement sécurisé</span>
+                </div>
               </div>
             )}
           </div>

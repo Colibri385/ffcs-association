@@ -184,4 +184,46 @@ router.put('/profile', requireAuth, (req, res) => {
   }
 });
 
+// Change Password
+router.put('/password', requireAuth, (req, res) => {
+  try {
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ error: 'Le mot de passe actuel et le nouveau mot de passe sont obligatoires.' });
+    }
+
+    if (confirmPassword !== undefined && newPassword !== confirmPassword) {
+      return res.status(400).json({ error: 'Le nouveau mot de passe et sa confirmation ne correspondent pas.' });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({ error: 'Le nouveau mot de passe doit comporter au moins 6 caractères.' });
+    }
+
+    const rawUser = db.getUserById(req.user.id);
+    if (!rawUser) {
+      return res.status(404).json({ error: 'Utilisateur introuvable.' });
+    }
+
+    const isMatch = bcrypt.compareSync(currentPassword, rawUser.passwordHash);
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Le mot de passe actuel est incorrect.' });
+    }
+
+    // Hash new password
+    const salt = bcrypt.genSaltSync(10);
+    const newPasswordHash = bcrypt.hashSync(newPassword, salt);
+
+    db.updateUser(req.user.id, { passwordHash: newPasswordHash });
+
+    res.json({
+      message: 'Votre mot de passe a été modifié avec succès.'
+    });
+  } catch (err) {
+    console.error('Change password error:', err);
+    res.status(500).json({ error: 'Erreur lors de la modification du mot de passe.' });
+  }
+});
+
 export default router;

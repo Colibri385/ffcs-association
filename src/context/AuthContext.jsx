@@ -212,6 +212,26 @@ export const AuthProvider = ({ children }) => {
     return data;
   };
 
+  const changePassword = async ({ currentPassword, newPassword, confirmPassword }) => {
+    if (!token) throw new Error('Non authentifié');
+
+    const res = await fetch('/api/auth/password', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ currentPassword, newPassword, confirmPassword }),
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || 'Erreur lors de la modification du mot de passe');
+    }
+
+    return data;
+  };
+
   // Refresh user data (e.g. after a role change)
   const refreshUser = async () => {
     if (!token) return;
@@ -246,6 +266,7 @@ export const AuthProvider = ({ children }) => {
         logout,
         quickDemoLogin,
         updateProfile,
+        changePassword,
         refreshUser,
         isLoggedIn: !!user,
         isBoardMember,
