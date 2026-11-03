@@ -162,8 +162,8 @@
   "associationInfo": {
     "name": "FFCS - Fédération Française des Conducteurs du Sport",
     "acronym": "FFCS",
-    "founded": 2012,
-    "slogan": "La passion du pilotage, l’exigence de la sécurité",
+    "founded": 2025,
+    "slogan": "La passion du sport",
     "colors": {
       "primary": "#123B70",
       "secondary": "#FFFFFF",
@@ -177,14 +177,7 @@
     "Arena Les Sables d Olonne",
     "Parkings",
     "Tennis",
-    "Tennis de table",
-    "Football",
-    "Escrime",
-    "Basket",
-    "Rugby",
-    "Golf",
-    "Patinage",
-    "Volley"
+    "Tennis de table"
   ],
   "news": [
     {

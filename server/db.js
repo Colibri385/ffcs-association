@@ -9,9 +9,6 @@ const __dirname = path.dirname(__filename);
 // Single unique database file: store.json at project root (same as used in production)
 const DB_FILE = path.join(__dirname, '..', 'store.json');
 
-// Obsolete local database path (to remove if present)
-const OBSOLETE_LOCAL_DB = path.join(__dirname, 'data', 'store.json');
-
 export const ROLES = {
   REGULAR_MEMBER: 'regular_member',
   PRESIDENT: 'president',
@@ -46,16 +43,6 @@ class Database {
   }
 
   init() {
-    // Clean up obsolete duplicate local database if it exists
-    if (fs.existsSync(OBSOLETE_LOCAL_DB)) {
-      try {
-        fs.unlinkSync(OBSOLETE_LOCAL_DB);
-        console.log('Ancienne base locale server/data/store.json retirée.');
-      } catch (e) {
-        // Ignorer si verrouillé
-      }
-    }
-
     if (!fs.existsSync(DB_FILE)) {
       this.seed();
     } else {
