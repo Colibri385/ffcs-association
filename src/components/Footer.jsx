@@ -97,8 +97,12 @@ export const Footer = () => {
         <div className="pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>© 2026 FFCS - Fédération Française des Conducteurs du Sport. Tous droits réservés.</p>
           <div className="flex items-center gap-6">
-            <span>Règlement Sportif Fédéral</span>
-            <span>Statuts de l’Association</span>
+            <Link to="/reglement-sportif" className="hover:text-white transition-colors">
+              Règlement Sportif Fédéral
+            </Link>
+            <Link to="/statuts" className="hover:text-white transition-colors">
+              Statuts de l’Association
+            </Link>
           </div>
         </div>
       </div>

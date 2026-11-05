@@ -10,6 +10,8 @@ import DashboardPage from './pages/DashboardPage';
 import MembersAdminPage from './pages/MembersAdminPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import SportsRulesPage from './pages/SportsRulesPage';
+import StatutsPage from './pages/StatutsPage';
 
 export const App = () => {
   return (
@@ -28,6 +30,8 @@ export const App = () => {
           <Route path="/admin/members" element={<MembersAdminPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/reglement-sportif" element={<SportsRulesPage />} />
+          <Route path="/statuts" element={<StatutsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

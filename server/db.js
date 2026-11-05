@@ -91,7 +91,7 @@ class Database {
           email: "dede42.vilboux@wanadoo.fr",
           passwordHash: "$2b$10$hprqJ.4IyJMsDNV.OFi6YOyQ/pyGcZ2F.riw.xItli.jI4nztPt1m",
           role: "vice_president",
-          licenseNumber: "FFCS-FR-003",
+          licenseNumber: "FFCS-FR-002",
           phone: "+33641040626",
           vehicle: "Adhésion Acquittée",
           bio: "JO PARIS ",
