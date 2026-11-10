@@ -191,7 +191,7 @@ export const HomePage = () => {
               <span>{totalEventsCount || featuredEvents.length}</span>
             </div>
             <div className="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">
-              Épreuves en cours
+              Évènements en cours
             </div>
           </div>
           
