@@ -190,7 +190,7 @@ export const BoardPage = () => {
 
           <div className="p-4 rounded-xl bg-slate-950/60 border border-purple-900/40">
             <div className="font-racing font-bold text-lg text-purple-400 mb-1">
-              Webmaster Fédéral
+              Webmaster
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
               Administration technique, gestion de la plateforme digitale et des fiches membres avec les mêmes droits que le Président.
