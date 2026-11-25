@@ -18,6 +18,9 @@ export const EditMemberModal = ({ isOpen, onClose, onSave, member }) => {
     name: '',
     email: '',
     phone: '',
+    address: '',
+    city: '',
+    department: '',
     vehicle: '',
     licenseNumber: '',
     bio: '',
@@ -36,6 +39,9 @@ export const EditMemberModal = ({ isOpen, onClose, onSave, member }) => {
         name: member.name || '',
         email: member.email || '',
         phone: member.phone || '',
+        address: member.address || '',
+        city: member.city || '',
+        department: member.department || '',
         vehicle: member.vehicle || '',
         licenseNumber: member.licenseNumber || '',
         bio: member.bio || '',
@@ -233,6 +239,50 @@ export const EditMemberModal = ({ isOpen, onClose, onSave, member }) => {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="+33 6..."
+                className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              Adresse postale
+            </label>
+            <input
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              placeholder="ex: 12 rue de la Paix"
+              className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+                Commune
+              </label>
+              <input
+                type="text"
+                name="city"
+                value={formData.city}
+                onChange={handleChange}
+                placeholder="ex: Les Sables d'Olonne"
+                className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+                Département
+              </label>
+              <input
+                type="text"
+                name="department"
+                value={formData.department}
+                onChange={handleChange}
+                placeholder="ex: 85 - Vendée"
                 className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
               />
             </div>

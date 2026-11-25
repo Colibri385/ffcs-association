@@ -14,6 +14,7 @@ import {
   Edit,
   UserCheck,
   Trash2,
+  MapPin,
 } from 'lucide-react';
 
 const ROLE_OPTIONS = [
@@ -182,10 +183,14 @@ export const MembersAdminPage = () => {
 
   // Filtering
   const filteredMembers = members.filter((m) => {
+    const term = search.toLowerCase();
     const matchesSearch =
-      m.name.toLowerCase().includes(search.toLowerCase()) ||
-      m.email.toLowerCase().includes(search.toLowerCase()) ||
-      (m.licenseNumber && m.licenseNumber.toLowerCase().includes(search.toLowerCase()));
+      m.name.toLowerCase().includes(term) ||
+      m.email.toLowerCase().includes(term) ||
+      (m.licenseNumber && m.licenseNumber.toLowerCase().includes(term)) ||
+      (m.city && m.city.toLowerCase().includes(term)) ||
+      (m.department && m.department.toLowerCase().includes(term)) ||
+      (m.address && m.address.toLowerCase().includes(term));
 
     const matchesRole =
       roleFilter === 'all' ||
@@ -257,7 +262,7 @@ export const MembersAdminPage = () => {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Rechercher par nom, email ou n° de licence..."
+            placeholder="Rechercher par nom, email, commune, département ou n° de licence..."
             className="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-700/80 rounded-xl text-white text-sm focus:outline-none focus:border-blue-500"
           />
         </div>
@@ -328,6 +333,14 @@ export const MembersAdminPage = () => {
                             )}
                           </div>
                           <div className="text-xs text-slate-400">{m.email}</div>
+                          {(m.city || m.department || m.address) && (
+                            <div className="text-[11px] text-slate-400 flex items-center gap-1 mt-0.5">
+                              <MapPin size={11} className="text-red-400 shrink-0" />
+                              <span className="truncate max-w-[220px]" title={[m.address, m.city, m.department].filter(Boolean).join(', ')}>
+                                {[m.city, m.department].filter(Boolean).join(' - ') || m.address}
+                              </span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </td>

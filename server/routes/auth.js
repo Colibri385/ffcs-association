@@ -21,7 +21,7 @@ const sanitizeUser = (user) => {
 // Register (Free registration for any sports driver)
 router.post('/register', async (req, res) => {
   try {
-    const { name, email, password, phone, vehicle, bio } = req.body;
+    const { name, email, password, phone, vehicle, bio, address, city, department } = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ error: 'Le nom, l’adresse email et le mot de passe sont obligatoires.' });
@@ -52,6 +52,9 @@ router.post('/register', async (req, res) => {
       role: ROLES.REGULAR_MEMBER, // regular member
       licenseNumber,
       phone: phone || '',
+      address: address ? address.trim() : '',
+      city: city ? city.trim() : '',
+      department: department ? department.trim() : '',
       vehicle: vehicle || '',
       bio: bio || 'adhérent à la FFCS.',
       avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(name)}`,
@@ -164,11 +167,14 @@ router.get('/me', requireAuth, (req, res) => {
 // Update Profile
 router.put('/profile', requireAuth, (req, res) => {
   try {
-    const { name, phone, vehicle, bio, avatar } = req.body;
+    const { name, phone, vehicle, bio, avatar, address, city, department } = req.body;
     const updates = {};
 
     if (name) updates.name = name.trim();
     if (phone !== undefined) updates.phone = phone;
+    if (address !== undefined) updates.address = address.trim();
+    if (city !== undefined) updates.city = city.trim();
+    if (department !== undefined) updates.department = department.trim();
     if (vehicle !== undefined) updates.vehicle = vehicle;
     if (bio !== undefined) updates.bio = bio;
     if (avatar) updates.avatar = avatar;

@@ -153,11 +153,14 @@ router.put('/:id', requireAuth, (req, res) => {
       return res.status(404).json({ error: 'Membre introuvable.' });
     }
 
-    const { name, email, phone, vehicle, bio, licenseNumber, role, avatar } = req.body;
+    const { name, email, phone, vehicle, bio, licenseNumber, role, avatar, address, city, department } = req.body;
     const updates = {};
     if (name) updates.name = name.trim();
     if (email) updates.email = email.trim().toLowerCase();
     if (phone !== undefined) updates.phone = phone;
+    if (address !== undefined) updates.address = address.trim();
+    if (city !== undefined) updates.city = city.trim();
+    if (department !== undefined) updates.department = department.trim();
     if (vehicle !== undefined) updates.vehicle = vehicle;
     if (bio !== undefined) updates.bio = bio;
     if (licenseNumber !== undefined) updates.licenseNumber = licenseNumber.trim();

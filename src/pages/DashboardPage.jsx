@@ -43,6 +43,9 @@ export const DashboardPage = () => {
   const [profileData, setProfileData] = useState({
     name: '',
     phone: '',
+    address: '',
+    city: '',
+    department: '',
     vehicle: '',
     bio: '',
     avatar: '',
@@ -66,6 +69,9 @@ export const DashboardPage = () => {
       setProfileData({
         name: user.name || '',
         phone: user.phone || '',
+        address: user.address || '',
+        city: user.city || '',
+        department: user.department || '',
         vehicle: user.vehicle || '',
         bio: user.bio || '',
         avatar: user.avatar || '',
@@ -352,6 +358,14 @@ export const DashboardPage = () => {
                   <span className="text-slate-200">{user.phone}</span>
                 </div>
               )}
+              {(user.city || user.department) && (
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-400">Commune / Dép. :</span>
+                  <span className="text-slate-200 truncate max-w-[170px]">
+                    {[user.city, user.department].filter(Boolean).join(' - ')}
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Bottom Card Footer */}
@@ -402,6 +416,44 @@ export const DashboardPage = () => {
                 </div>
                 <div>
                   <label className="block text-[11px] font-semibold text-slate-400 uppercase mb-1">
+                    Adresse postale
+                  </label>
+                  <input
+                    type="text"
+                    value={profileData.address}
+                    onChange={(e) => setProfileData({ ...profileData, address: e.target.value })}
+                    placeholder="ex: 12 rue de la Paix"
+                    className="w-full px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-xs focus:outline-none focus:border-blue-500"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-400 uppercase mb-1">
+                      Commune
+                    </label>
+                    <input
+                      type="text"
+                      value={profileData.city}
+                      onChange={(e) => setProfileData({ ...profileData, city: e.target.value })}
+                      placeholder="ex: Les Sables d'Olonne"
+                      className="w-full px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-xs focus:outline-none focus:border-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-400 uppercase mb-1">
+                      Département
+                    </label>
+                    <input
+                      type="text"
+                      value={profileData.department}
+                      onChange={(e) => setProfileData({ ...profileData, department: e.target.value })}
+                      placeholder="ex: 85 - Vendée"
+                      className="w-full px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-xs focus:outline-none focus:border-blue-500"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-400 uppercase mb-1">
                     ADHÉSION
                   </label>
                   <input
@@ -433,8 +485,27 @@ export const DashboardPage = () => {
                 </button>
               </form>
             ) : (
-              <div className="space-y-2 text-xs text-slate-300">
-                <p className="text-slate-400 italic">« {user.bio || 'Adhérent FFCS.'} »</p>
+              <div className="space-y-2.5 text-xs text-slate-300">
+                <div className="flex items-center gap-2">
+                  <Phone size={13} className="text-blue-400 shrink-0" />
+                  <span className="text-slate-400">Tél :</span>
+                  <span className="text-white font-medium">{user.phone || 'Non renseigné'}</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <MapPin size={13} className="text-red-400 shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <span className="text-slate-400">Adresse : </span>
+                    <span className="text-white">{user.address || 'Non renseignée'}</span>
+                    {(user.city || user.department) && (
+                      <div className="text-slate-300 font-medium mt-0.5">
+                        {[user.city, user.department].filter(Boolean).join(' - ')}
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="pt-2 border-t border-slate-800">
+                  <p className="text-slate-400 italic text-[11px]">« {user.bio || 'Adhérent FFCS.'} »</p>
+                </div>
               </div>
             )}
           </div>

@@ -13,6 +13,9 @@ export const RegisterPage = () => {
     password: '',
     confirmPassword: '',
     phone: '',
+    address: '',
+    city: '',
+    department: '',
     vehicle: '',
     bio: '',
   });
@@ -46,6 +49,9 @@ export const RegisterPage = () => {
         email: formData.email,
         password: formData.password,
         phone: formData.phone,
+        address: formData.address,
+        city: formData.city,
+        department: formData.department,
         vehicle: formData.vehicle,
         bio: formData.bio,
       });
@@ -174,6 +180,50 @@ export const RegisterPage = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="+33 6 00 00 00 00"
+                className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-blue-500"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              Adresse postale (Facultatif)
+            </label>
+            <input
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              placeholder="ex: 12 rue de la Paix"
+              className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-blue-500"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+                Commune (Facultatif)
+              </label>
+              <input
+                type="text"
+                name="city"
+                value={formData.city}
+                onChange={handleChange}
+                placeholder="ex: Les Sables d'Olonne"
+                className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-blue-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+                Département (Facultatif)
+              </label>
+              <input
+                type="text"
+                name="department"
+                value={formData.department}
+                onChange={handleChange}
+                placeholder="ex: 85 - Vendée"
                 className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-blue-500"
               />
             </div>
