@@ -554,14 +554,14 @@ export const EventModal = ({
             {/* Location */}
             <div>
               <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
-                Lieu / Circuit *
+                Lieu
               </label>
               <input
                 type="text"
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
-                placeholder="ex: Circuit de Nevers Magny-Cours, Nièvre"
+                placeholder="ex: PARIS - Stade de France, 93216 Saint-Denis"
                 className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
                 required
               />
@@ -577,7 +577,7 @@ export const EventModal = ({
                 name="trackLength"
                 value={formData.trackLength}
                 onChange={handleChange}
-                placeholder="ex: Tracé F1 4.411 km, Paddock VIP..."
+                placeholder="ex: Gestion des Parkings"
                 className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
               />
             </div>
@@ -593,7 +593,7 @@ export const EventModal = ({
               rows={3}
               value={formData.description}
               onChange={handleChange}
-              placeholder="Programme, déroulé, consignes pratiques, accès..."
+              placeholder="Programme, consignes..."
               className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500 resize-none"
             />
           </div>
@@ -601,14 +601,14 @@ export const EventModal = ({
           {/* Requirements (Optional) */}
           <div>
             <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
-              Conditions d’accès / Équipements (Facultatif)
+              Équipements (Facultatif)
             </label>
             <input
               type="text"
               name="requirements"
               value={formData.requirements}
               onChange={handleChange}
-              placeholder="ex: Entrée libre spectateurs"
+              placeholder="ex: Gilets, Lampes, casse-croutes, 2 invitations"
               className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
             />
           </div>
