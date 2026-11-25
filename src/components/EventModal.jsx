@@ -577,7 +577,7 @@ export const EventModal = ({
                 name="trackLength"
                 value={formData.trackLength}
                 onChange={handleChange}
-                placeholder="ex: Gestion des Parkings"
+                placeholder="ex: Eau, Sandwichs et accréditation"
                 className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
               />
             </div>
@@ -608,7 +608,7 @@ export const EventModal = ({
               name="requirements"
               value={formData.requirements}
               onChange={handleChange}
-              placeholder="ex: Gilets, Lampes, casse-croutes, 2 invitations"
+              placeholder="ex: Gilets, Lampes, acrréditation"
               className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
             />
           </div>
